@@ -7,42 +7,24 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="style.css">
+
 <html>
 <title> </title>
 <body>
-	<h1>TITLE</h1>
+	<h1>Home : Scubadiver bullshit what did we call us?</h1>
+	<?php include 'scripts/ConnectToDB.php';?>
+
 	<article>
-	<h2>Article 1</h2>
-	<p>This is article 1</p>
-	<?php
-	
-	echo "Today is " . date("Y/m/d") . "<br>";
-	?>
-	
-	<?php
-	echo "Starting connection to datavase<br>";
-	$db = mysql_connect("silva.computing.dundee.ac.uk", "16ac3u06","cba123");
-	mysql_select_db("16ac3d06");
-	if(!$db)
-	{
-		echo mysql_error();
-	}
-	else
-	{
-		echo "Successfully connected";
-	}
-	mysql_close($db);
-	
-	?>
-	</article>
-	<article>
-	<h2>Article 2</h2>
-	<p>This is article 2</p>
+	<h2>Welcome to scuba something, buy our shit</h2>
+	<p>Look at all the bullshit we have</p>
 	</article>
 
-	<footer>
-			<div w3-include-html="footer.html"></div>			
-    </footer> 
+
+	<?php include 'footer.html';?>
+
+	<?php include 'scripts/CloseConnection.php';?>	
+
 </body>
 
 </html>
