@@ -56,13 +56,41 @@
 
 
 // call our data using the $_POST predefined variable
-	$username = $_POST["username"];
-	$Fname = $_POST["firstName"];
-	$Lname = $_POST["lastName"];
-	$phoneNumber = $_POST["phoneNumber"];
-	$email = $_POST["email"];
-	$passwords = $_POST["password"];
-	$dateofbirth = $_POST["DATE"];
+	
+	//Sanitised input
+	
+	//Trim removes whitespaces, so no problems inserting into db
+	$username = trim($_POST['username']);
+	//strip tags removes any php, html css etc tags
+  	$username = strip_tags($name);
+	//htmlspeicalchars escapes some characters 
+ 	$username = htmlspecialchars($name);
+	
+	$Fname = trim($_POST['firstName']);
+  	$Fname = strip_tags($Fname);
+ 	$Fname = htmlspecialchars($Fname);
+	
+	$Lname = trim($_POST['lastName']);
+  	$Lname = strip_tags($Lname);
+ 	$Lname = htmlspecialchars($Lname);
+	
+	$phoneNumber = trim($_POST['phoneNumber']);
+  	$phoneNumber = strip_tags($phoneNumber);
+ 	$phoneNumber = htmlspecialchars($phoneNumber);
+	
+	$email = trim($_POST['email']);
+  	$email = strip_tags($email);
+ 	$email = htmlspecialchars($email);
+	
+	$passwords = trim($_POST['password']);
+  	$passwords = strip_tags($passwords);
+ 	$passwords = htmlspecialchars($passwords);
+	
+	$dateofbirth = trim($_POST['DATE']);
+  	$dateofbirth = strip_tags($dateofbirth);
+ 	$dateofbirth = htmlspecialchars($dateofbirth);
+	
+	//Possibly put input validation here, i.e no previous username, email, phonenumber, password requirements, 
 
 	
 	
