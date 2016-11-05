@@ -79,18 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$phoneNumber = trim($_POST['phoneNumber']);
   	$phoneNumber = strip_tags($phoneNumber);
  	$phoneNumber = htmlspecialchars($phoneNumber);
+	//Reg exp to only allow 0-9, before allowed a-z
+	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
 	
-	$email = trim($_POST['email']);
-  	$email = strip_tags($email);
- 	$email = htmlspecialchars($email);
+	$email = FILTER_SANITIZE_EMAIL($_POST['email']); //Special filter for emails
 	
 	$passwords = trim($_POST['password']);
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
 	
-	$dateofbirth = trim($_POST['DATE']);
-  	$dateofbirth = strip_tags($dateofbirth);
- 	$dateofbirth = htmlspecialchars($dateofbirth);
+	//Reg exp to only allow for 0-9 and /'s
+  	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['date']);
+	//Probably don't need this due to the form only allowing certain structures, be its here to be safe
+	
 	
 	//Possibly put input validation here, i.e no previous username, email, phonenumber, password requirements, 
 
