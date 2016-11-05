@@ -20,7 +20,7 @@
 	<p>Look at all the bullshit we have</p>
 	</article>
 	
-	<form action="Error400.php" method="post">
+	<form action="signUPpage.php" method="post">
 
 	Username:<br />
 	<input name="username" type="text" /><br />
