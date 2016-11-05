@@ -52,6 +52,8 @@
 // Require the file that connect to the database.
 //  database connection in separate file
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
 	include_once('scripts/ConnectToDB.php');
 
 
@@ -103,6 +105,8 @@
 		 
 		 
 		echo "Thank you for signing up our bullshit .";
+		
+}
 
 ?>
 
