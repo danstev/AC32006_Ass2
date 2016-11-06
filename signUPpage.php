@@ -57,8 +57,8 @@
 function checkIfExist($username)
 {
 	$result= MYSQL_QUERY(
-		 "SELECT * FROM clients". // keep first value because I don't know yet if it will be adding automatically
-		 "WHERE "
+		 "SELECT * FROM clients
+		 WHERE "
 		 );
 	
 }
@@ -70,7 +70,8 @@ function checkIfExist($username)
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	include_once('scripts/ConnectToDB.php');
-
+	$err = 0;
+	$errCode = "";
 
 // call our data using the $_POST predefined variable
 	
@@ -79,9 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	//Trim removes whitespaces, so no problems inserting into db
 	$username = trim($_POST['username']);
 	//strip tags removes any php, html css etc tags
-  	$username = strip_tags($name);
+  	$username = strip_tags($username);
 	//htmlspeicalchars escapes some characters 
- 	$username = htmlspecialchars($name);
+ 	$username = htmlspecialchars($username);
 	
 	$Fname = trim($_POST['firstName']);
   	$Fname = strip_tags($Fname);
@@ -97,23 +98,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	//Reg exp to only allow 0-9, before allowed a-z
 	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
 	
-	$email = FILTER_SANITIZE_EMAIL($_POST['email']); //Special filter for emails
+	//Special filter for emails
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 	
 	//Maybe check if both passwords are the same here, then encrypt
-	if (strcmp($passwords, $passwordRepeat) !== 0)
+	if (strcmp($_POST['passwords'], $_POST['passwordRepeat']) !== 0)
 	{
-		$err = 1;
+		$err += 1;
 		$errCode += "Your passwords do not match!<br>";
 	}
 	
-	$passwords = trim($_POST['password']);
+	$passwords = trim($_POST['passwords']);
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
  	$pwdencrypt= md5($passwords); //encryption for 
 	
 	//Reg exp to only allow for 0-9 and /'s
-  	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['date']);
-	//Probably don't need this due to the form only allowing certain structures, be its here to be safe
+  	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['dateofbirth']);
+	//change format
+	$dateofbirth = date("y-m-d", strtotime($dateofbirth));
+	echo $dateofbirth;
 	
 	
 	//Possibly put input validation here, i.e no previous username, email, phonenumber, password requirements, 
@@ -127,16 +131,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	
 	if( $err === 0)
 	{
-		$result= MYSQL_QUERY(
-		 "INSERT INTO clients (' ', Fname, Lname, phoneNumber, email, userName, passwords, dateofbirth)". // keep first value because I don't know yet if it will be adding automatically
-		 "VALUES ('', '$username', '$Fname','$Lname','$phoneNumber','$email', '$pwdencrypt', '$dateofbirth')"
-		 );
-		 
+		$query = "INSERT INTO clients (Fname, Lname, phoneNumber, email, userName, passwords, dateofbirth)
+		VALUES ('$Fname', '$Lname', '$phoneNumber', '$email', '$username',  '$pwdencrypt', '$dateofbirth');";
+		$result = MYSQL_QUERY($query);
+		//echo $result;
 		echo "Thank you for signing up our bullshit .";
 	}
 	else
 	{
-	echo $errCode;		
+		echo $errCode;		
 	}
 		
 }
