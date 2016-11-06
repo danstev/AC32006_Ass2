@@ -18,9 +18,9 @@
 	<article>
 	<h2>Logged out</h2>
 	<p>Come back soon!</p>
+	<?php include 'scripts/sessionEnd.php';?>
 	</article>
-
-
+		
 	<?php include 'footer.html';?>
 
 	<?php include 'scripts/CloseConnection.php';?>	
