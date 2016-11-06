@@ -10,10 +10,9 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title> </title>
+<title>Logout : ScubaDivers </title>
 <body>
 	<h1>Log out : Scubadiver bullshit what did we call us?</h1>
-	<?php include 'scripts/ConnectToDB.php';?>
 
 	<article>
 	<h2>Logged out</h2>
@@ -22,8 +21,6 @@
 	</article>
 		
 	<?php include 'footer.html';?>
-
-	<?php include 'scripts/CloseConnection.php';?>	
 
 </body>
 
