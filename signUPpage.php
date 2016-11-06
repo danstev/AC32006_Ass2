@@ -86,22 +86,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
  	$username = htmlspecialchars($username);
  	
 	
-	$Fname =mysql_real_escape_string(trim($_POST['firstName']);
+	$Fname =mysql_real_escape_string(trim($_POST['firstName']));
   	$Fname = strip_tags($Fname);
  	$Fname = htmlspecialchars($Fname);
 	
-	$Lname =mysql_real_escape_string(trim($_POST['lastName']);
+	$Lname =mysql_real_escape_string(trim($_POST['lastName']));
   	$Lname = strip_tags($Lname);
  	$Lname = htmlspecialchars($Lname);
 	
-	$phoneNumber =mysql_real_escape_string(trim($_POST['phoneNumber']);
+	$phoneNumber =mysql_real_escape_string(trim($_POST['phoneNumber']));
   	$phoneNumber = strip_tags($phoneNumber);
  	$phoneNumber = htmlspecialchars($phoneNumber);
 	//Reg exp to only allow 0-9, before allowed a-z
 	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
 	
 	//Special filter for emails
-	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); // mysql_real_escape_string
+	$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); // mysql_real_escape_string
 	
 	//Maybe check if both passwords are the same here, then encrypt
 	if (strcmp($_POST['passwords'], $_POST['passwordRepeat']) !== 0)
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$errCode += "Your passwords do not match!<br>";
 	}
 	
-	$passwords =mysql_real_escape_string(trim($_POST['passwords']);
+	$passwords =mysql_real_escape_string(trim($_POST['passwords']));
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
  	$pwdencrypt= md5($passwords); //encryption for password 
