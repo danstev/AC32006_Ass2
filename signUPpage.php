@@ -39,6 +39,9 @@
 
 	Password:<br />
 	<input name="passwords" type="password" /><br />
+		
+	Password repeat:<br />
+	<input name="passwordRepeat" type="password" /><br />
 
 	Data of Birth: <br />
 	<input name="dateofbirth" type="date" /><br />
@@ -49,9 +52,21 @@
 
 <?php
 
+	/*
+	
+function checkIfExist($username)
+{
+	$result= MYSQL_QUERY(
+		 "SELECT * FROM clients". // keep first value because I don't know yet if it will be adding automatically
+		 "WHERE "
+		 );
+	
+}
+
+*/
 // Require the file that connect to the database.
 //  database connection in separate file
-
+		
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	include_once('scripts/ConnectToDB.php');
@@ -84,6 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	
 	$email = FILTER_SANITIZE_EMAIL($_POST['email']); //Special filter for emails
 	
+	//Maybe check if both passwords are the same here, then encrypt
+	if (strcmp($passwords, $passwordRepeat) !== 0)
+	{
+		$err = 1;
+		$errCode += "Your passwords do not match!<br>";
+	}
+	
 	$passwords = trim($_POST['password']);
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
@@ -96,17 +118,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	
 	//Possibly put input validation here, i.e no previous username, email, phonenumber, password requirements, 
 
+	//Check if username, email exists
+	
 	
 	
 	//  insert information  and VALUES defines the values that
 	// we are entering
-	$result= MYSQL_QUERY(
+	
+	if( $err === 0)
+	{
+		$result= MYSQL_QUERY(
 		 "INSERT INTO clients (' ', Fname, Lname, phoneNumber, email, userName, passwords, dateofbirth)". // keep first value because I don't know yet if it will be adding automatically
 		 "VALUES ('', '$username', '$Fname','$Lname','$phoneNumber','$email', '$pwdencrypt', '$dateofbirth')"
 		 );
 		 
-		 
 		echo "Thank you for signing up our bullshit .";
+	}
+	else
+	{
+	echo $errCode;		
+	}
 		
 }
 
