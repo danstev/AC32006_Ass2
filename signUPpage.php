@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$passwords = trim($_POST['password']);
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
+ 	$pwdencrypt= md5($passwords); //encryption for 
 	
 	//Reg exp to only allow for 0-9 and /'s
   	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['date']);
@@ -101,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	// we are entering
 	$result= MYSQL_QUERY(
 		 "INSERT INTO clients (' ', Fname, Lname, phoneNumber, email, userName, passwords, dateofbirth)". // keep first value because I don't know yet if it will be adding automatically
-		 "VALUES ('', '$username', '$Fname','$Lname','$phoneNumber','$email', '$passwords', '$dateofbirth')"
+		 "VALUES ('', '$username', '$Fname','$Lname','$phoneNumber','$email', '$pwdencrypt', '$dateofbirth')"
 		 );
 		 
 		 
