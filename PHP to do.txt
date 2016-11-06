@@ -1,0 +1,9 @@
+make account
+log in
+get database items for Admin and Employees
+view salary
+get items for sale
+change basket items (View, Add, Remove, Change quantity)
+submit "contact us" form
+change user info (Payment details, Address, Password)
+checkout(submit delivery options)
