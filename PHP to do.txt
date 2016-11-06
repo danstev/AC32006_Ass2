@@ -1,4 +1,4 @@
-make account
+make account - almost done
 log in
 get database items for Admin and Employees
 view salary
