@@ -1,16 +1,16 @@
 Warehouse
-	branchID
+	branchID (done)
 	
 Address
 	
-Financial transaction
+Financial transaction (done)
 	ClientID
 	OrderID
 	
-Courier
+Courier		(done)
 	OrderID
 	
-Orders
+Orders           
 	ClientID
 	WarehouseID
 	
