@@ -36,12 +36,12 @@ Stock  (done)
 Help_ticket (done)
 	OrderID
 	
-payment_Details
+payment_Details (done)
 	ClientID
 	
-employee
+employee (done)
 	BranchID
 	addressID
 	
-Clients
+Clients (done)
 	addressID
