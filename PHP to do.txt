@@ -2,13 +2,13 @@ Index --- Dan
 	Home page etc
 Company Info --- Chris
 	Little bio about the company
-Products
+Products --- Allan
 	Display a sortable and searchable page of products
 Employee pages
 	Can search employees if you are admin, otherwise employees can only see themselves
 Account pages
 	Client can see their details, and link to order history etc
-Log in --- Allan
+Log in --- Allan --- Functional(needs a redirect and HTML clean up)
 	Logs in, create session
 Log out
 	Logs out, ends session
