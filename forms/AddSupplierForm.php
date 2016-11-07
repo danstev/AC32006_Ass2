@@ -1,28 +1,14 @@
-<form action="signUPpage.php" method="post">
+<form action="addSupplier.php" method="post">
 
-		Username:<br />
-		<input name="username" type="text" /><br />
-	
-		First name:<br />
-		<input name="firstName" type="text" /><br />
-	
-		Last name:<br />
-		<input name="lastName" type="text" /><br />
-	
-		Phone Number:<br />
-		<input name="phoneNumber" type="numeric" /><br /> 
+		Supplier name:<br />
+		<input name="supplier" type="text" /><br />
 
 		Email:<br />
-		<input name="email" type="email" /><br />
+		<input name="Email" type="text" /><br />
 
-		Password:<br />
-		<input name="passwords" type="password" /><br />
-		
-		Password repeat:<br />
-		<input name="passwordRepeat" type="password" /><br />
-
-		Data of Birth: <br />
-		<input name="dateofbirth" type="date" /><br />
+		Phone number:<br />
+		<input name="PhoneNumber" type="text" /><br />
+	
 
 		<input type="submit" />
 
