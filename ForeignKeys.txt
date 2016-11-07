@@ -1,0 +1,47 @@
+Warehouse
+	branchID
+	
+Address
+	
+Financial transaction
+	ClientID
+	OrderID
+	
+Courier
+	OrderID
+	
+Orders
+	ClientID
+	WarehouseID
+	
+Items_Ordered
+	OrderID
+	ProductID
+	
+Products
+	SupplierID
+	
+Supplier
+
+Branches
+	addressID
+	
+Head_ofice
+	BranchID
+	
+Stock
+	ProductID
+	WarehouseID
+	
+Help_ticket
+	OrderID
+	
+payment_Details
+	ClientID
+	
+employee
+	BranchID
+	addressID
+	
+Clients
+	addressID
