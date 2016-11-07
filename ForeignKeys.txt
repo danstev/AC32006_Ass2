@@ -29,11 +29,11 @@ Branches (done)
 Head_ofice  (done)
 	BranchID
 	
-Stock
+Stock  (done)
 	ProductID
 	WarehouseID
 	
-Help_ticket
+Help_ticket (done)
 	OrderID
 	
 payment_Details
