@@ -1,0 +1,40 @@
+Index --- Dan
+	Home page etc
+Company Info --- Chris
+	Little bio about the company
+Products --- Allan
+	Display a sortable and searchable page of products
+Employee pages
+	Can search employees if you are admin, otherwise employees can only see themselves
+Account pages
+	Client can see their details, and link to order history etc
+Log in --- Allan --- Functional(needs a redirect and HTML clean up)
+	Logs in, create session
+Log out
+	Logs out, ends session
+Register
+	Registers a user, do we need one for employees? or is that contrived?
+payment details
+	Add or remove payment details
+address
+	Add or remove addresses, maybe just a php thing which adds to database, and returns a id for other uses?
+Checkout
+	Gets items and makes an order, displays total cost
+Basket
+	Display list of items the client has selected, can also change amount of items they have ordered, link to checkout page
+Order display
+	Display a certain order
+Order history
+	Display all orders for a client
+Help page --- Aaron
+	Open a help ticket page
+Check stock page
+	Checks stock for a certain branch or warehouse?
+Add supplier 
+	Add a supplier to the list of suppliers	
+Header
+	At the top of every page, maybe an image, with scubadivers on it, a logo and some basic links?
+Footer
+	Basic navigation at the bottom of the page, maybe add a logo
+Branch overview
+	Ovewview of a branch, list of employees, who is manager, link to stock page etc
