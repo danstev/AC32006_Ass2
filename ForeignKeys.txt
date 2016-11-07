@@ -10,23 +10,23 @@ Financial transaction (done)
 Courier		(done)
 	OrderID
 	
-Orders           
+Orders           (done)     
 	ClientID
 	WarehouseID
 	
-Items_Ordered
+Items_Ordered  (done)
 	OrderID
 	ProductID
 	
-Products
+Products    (done)      
 	SupplierID
 	
 Supplier
 
-Branches
+Branches (done)
 	addressID
 	
-Head_ofice
+Head_ofice  (done)
 	BranchID
 	
 Stock
