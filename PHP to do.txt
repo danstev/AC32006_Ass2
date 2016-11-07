@@ -1,6 +1,6 @@
-Index
+Index --- Dan
 	Home page etc
-Company Info
+Company Info --- Chris
 	Little bio about the company
 Products
 	Display a sortable and searchable page of products
@@ -8,7 +8,7 @@ Employee pages
 	Can search employees if you are admin, otherwise employees can only see themselves
 Account pages
 	Client can see their details, and link to order history etc
-Log in
+Log in --- Allan
 	Logs in, create session
 Log out
 	Logs out, ends session
@@ -26,7 +26,7 @@ Order display
 	Display a certain order
 Order history
 	Display all orders for a client
-Help page
+Help page --- Aaron
 	Open a help ticket page
 Check stock page
 	Checks stock for a certain branch or warehouse?
