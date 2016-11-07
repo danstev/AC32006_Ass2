@@ -26,9 +26,7 @@
 					$validUser  =  true;
 				}
 			}
-			if($validU
-
-				#ser === true)
+			if($validUser === true)
 			{
 				session_start();
 				$_SESSION["privilege"] = 'customer';
