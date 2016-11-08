@@ -10,7 +10,7 @@ Account pages
 	Client can see their details, and link to order history etc
 Log in --- Allan --- Functional(needs a redirect and HTML clean up)
 	Logs in, create session
-Log out
+Log out --- Dan, Allan --- Should Work
 	Logs out, ends session
 Register
 	Registers a user, do we need one for employees? or is that contrived?
