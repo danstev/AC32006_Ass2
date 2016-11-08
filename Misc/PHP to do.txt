@@ -2,7 +2,7 @@ Index --- Dan
 	Home page etc
 Company Info --- Chris
 	Little bio about the company
-Products --- Allan
+Products --- Allan --- Functional(needs add to cart functionality and CSS)
 	Display a sortable and searchable page of products
 Employee pages
 	Can search employees if you are admin, otherwise employees can only see themselves
