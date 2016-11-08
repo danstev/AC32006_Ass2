@@ -16,20 +16,43 @@
 		$username = $_POST["username"];
 		$password = md5($_POST["password"]);
 		$validUser = false;
+		$priv = "";
 
-		$query = "SELECT passwords FROM clients where username = '$username';";
+		$query = "SELECT * FROM logins where username = '$username';";
 		$result = mysql_query($query);
 			while($row = mysql_fetch_array($result))
 			{
 				if($row["passwords"] === $password)
 				{
 					$validUser  =  true;
+					if( $row["clientID"] > 0)
+					{
+						$priv = "customer";
+					}
+					else if( $row["employeeID"] > 0)
+					{
+						$id = $row["employeeID"];
+						$empQuery = "SELECT position FROM employees where employeeID = '$id';";
+						$empResult = mysql_query($empQuery);
+						while($empRow = mysql_fetch_array($empResult))
+						{
+							$priv = $empRow["position"];
+						}
+					}
+					else
+					{
+						//How would it even get here? Maybe make a script which sets this everytime you are not signed in on page?? or even if you are signed in display different stuff, default is not signed in
+						$priv = "notSignedIn";
+					}
 				}
 			}
 			if($validUser === true)
 			{
 				session_start();
-				$_SESSION["privilege"] = 'customer';
+				
+				
+				
+				$_SESSION["privilege"] = $priv;
 				echo $_SESSION["privilege"];
 			}
 		
