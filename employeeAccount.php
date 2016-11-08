@@ -13,7 +13,9 @@
 <title> </title>
 <body>
 	<center>
+	<div class="jumbotron text-center">
 	<h1>DiveMasters</h1>
+	</div>
 	<?php include 'scripts/ConnectToDB.php';?>
 	<article>
 	<h2>My Employee Account </h2>

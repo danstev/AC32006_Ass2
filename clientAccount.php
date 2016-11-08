@@ -1,6 +1,5 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -13,7 +12,9 @@
 <title> </title>
 <body>
 	<center>
+	<div class="jumbotron text-center">
 	<h1>DiveMasters</h1>
+	</div>
 	<?php include 'scripts/ConnectToDB.php';?>
 	<article>
 	<h2>My Account </h2>
@@ -24,6 +25,7 @@
 	Phone Number: <a href="placeholderurl.html">(change)</a><!-- Get phone number from database--><br>
 	Saved Address: <a href="placeholderurl.html">(change)</a><!-- Get address from database--><br>
 	Saved Payment Details: <a href="placeholderurl.html">(change)</a><!-- Get card number from database and show last four digets--><br>
+	
 	</p>
 	</article>
 
