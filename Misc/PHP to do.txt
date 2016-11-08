@@ -7,10 +7,10 @@ Company Info --- Chris
 Products --- Allan --- Functional(needs add to cart functionality and CSS)
 	Display a sortable and searchable page of products
 	
-Employee pages
+Employee pages --- Christos
 	Can search employees if you are admin, otherwise employees can only see themselves
 	
-Account pages
+Account pages --- Aaron
 	Client can see their details, and link to order history etc
 	
 Log in --- Allan --- Functional(needs a redirect and HTML clean up)
@@ -19,7 +19,7 @@ Log in --- Allan --- Functional(needs a redirect and HTML clean up)
 Log out --- Dan, Allan --- Should Work
 	Logs out, ends session
 	
-Register
+Register --- Igors, Dan --- Functional
 	Registers a user, do we need one for employees? or is that contrived?
 	
 payment details
@@ -31,7 +31,7 @@ address
 Checkout
 	Gets items and makes an order, displays total cost
 	
-Basket
+Basket --- Igors
 	Display list of items the client has selected, can also change amount of items they have ordered, link to checkout page
 	
 Order display
@@ -43,16 +43,16 @@ Order history
 Help page --- Aaron
 	Open a help ticket page
 	
-Check stock page
+Check stock page --- Allan
 	Checks stock for a certain branch or warehouse?
 	
-Add supplier 
+Add supplier --- Allan
 	Add a supplier to the list of suppliers	
 	
-Header
+Header --- Dan --- Functional
 	At the top of every page, maybe an image, with scubadivers on it, a logo and some basic links?
 	
-Footer
+Footer --- Dan --- Functional
 	Basic navigation at the bottom of the page, maybe add a logo
 	
 Branch overview
