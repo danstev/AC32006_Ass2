@@ -15,8 +15,60 @@
 	<h1>idk : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
-	<h2>what</h2>
-	<p>kjhgkhjg</p>
+
+	<?php
+
+	if(session_id() == '')
+	{
+		
+
+	}
+	else if($_SESSION["privilege"] === "customer")
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'GET')
+		{
+			$orderID = $_GET["id"];
+			$cusQuery = "SELECT * from orders where orderID = '$orderID';";
+			$cusResult = mysql_query($cusQuery);
+			while($cusRow = mysql_fetch_array($cusResult))
+			{
+				if($cusRow["clientID"] === $_SESSION["cusID"])
+				{
+					//Display order
+				}
+				else
+				{
+					echo "You do not have permission to look at this.";
+				}
+			}
+		}
+		else
+		{
+			//Display form
+		}
+
+	}
+	else if($_SESSION["privilege"] === "employee")
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'GET')
+		{
+			$orderID = $_GET["id"];
+			$empQuery = "SELECT * from orders where orderID = '$orderID';";
+			$empResult = mysql_query($empQuery);
+			//Display order
+		}
+		else
+		{
+			//Display form
+		}
+
+	}
+
+
+
+
+	?>
+
 	</article>
 
 

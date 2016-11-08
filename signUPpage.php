@@ -44,9 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   	$username = strip_tags($username);
 	//htmlspeicalchars escapes some characters 
  	$username = htmlspecialchars($username);
-
- 	//Check if username is in DB, add to error if no
-
  	$nameCheckQuery = mysql_query("Select username from Clients where username = '$userName'");
  	if(mysql_num_rows($nameCheckQuery) > 0)
  	{
@@ -65,19 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$phoneNumber =mysql_real_escape_string(trim($_POST['phoneNumber']));
   	$phoneNumber = strip_tags($phoneNumber);
  	$phoneNumber = htmlspecialchars($phoneNumber);
-	//Reg exp to only allow 0-9, before allowed a-z
 	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
-
-	//chech if phone no is in db, add to err if yes
-
 	$phoneCheckQuery = mysql_query("Select phoneNumber from Clients where username = '$phoneNumber'");
  	if(mysql_num_rows($phoneCheckQuery) > 0)
  	{
  		$err += 1;
- 		$errCode += "Your phone number is in use, please select another phone number<br>";;
- 	}
-	
-	//Special filter for emails
+ 		$errCode += "Your phone number is in use, please select another phone number<br>";
+ 	};
 	$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); // mysql_real_escape_string
 
 	$emailCheckQuery = mysql_query("Select phoneNumber from Clients where username = '$email'");
@@ -85,25 +76,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
  	{
  		$err += 1;
  		$errCode += "Your email is in use, please select another email<br>";;
- 	}
+ 	};
 	
-	//Maybe check if both passwords are the same here, then encrypt
 	if (strcmp($_POST['passwords'], $_POST['passwordRepeat']) !== 0)
 	{
 		$err += 1;
 		$errCode += "Your passwords do not match!<br>";
-	}
-	
+	};
 	$passwords =mysql_real_escape_string(trim($_POST['passwords']));
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
  	$pwdencrypt= md5($passwords); //encryption for password 
 	
-	//Reg exp to only allow for 0-9 and /'s
   	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['dateofbirth']);// mysql_real_escape_string
-	//change format
 	$dateofbirth = date("y-m-d", strtotime($dateofbirth));
-	//echo $dateofbirth;
 	
 	if( $err === 0)
 	{

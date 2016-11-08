@@ -30,11 +30,12 @@
 					{
 						$priv = "customer";
 						$id = $row["clientID"];
-						$cusQuery = "SELECT * FROM clients where employeeID = '$id';";
+						$_SESSION["cusID"] =$row["clientID"];
+						$cusQuery = "SELECT * FROM clients where clientID = '$id';";
 						$cusResult = mysql_query($cusQuery);
 						while($cusRow = mysql_fetch_array($cusResult))
 						{
-							$name = $empRow["fname"]; //Not sure if this is correct?
+							$name = $cusRow["fname"]; //Not sure if this is correct?
 						}
 
 					}
