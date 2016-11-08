@@ -17,6 +17,7 @@
 		$password = md5($_POST["password"]);
 		$validUser = false;
 		$priv = "";
+		$name = "";
 
 		$query = "SELECT * FROM logins where username = '$username';";
 		$result = mysql_query($query);
@@ -28,15 +29,24 @@
 					if( $row["clientID"] > 0)
 					{
 						$priv = "customer";
+						$id = $row["clientID"];
+						$cusQuery = "SELECT * FROM clients where employeeID = '$id';";
+						$cusResult = mysql_query($cusQuery);
+						while($cusRow = mysql_fetch_array($cusResult))
+						{
+							$name = $empRow["fname"]; //Not sure if this is correct?
+						}
+
 					}
 					else if( $row["employeeID"] > 0)
 					{
 						$id = $row["employeeID"];
-						$empQuery = "SELECT position FROM employees where employeeID = '$id';";
+						$empQuery = "SELECT * FROM employees where employeeID = '$id';";
 						$empResult = mysql_query($empQuery);
 						while($empRow = mysql_fetch_array($empResult))
 						{
 							$priv = $empRow["position"];
+							$name = $empRow["fname"]; //Not sure if this is correct?
 						}
 					}
 					else
@@ -54,6 +64,8 @@
 				
 				$_SESSION["privilege"] = $priv;
 				echo $_SESSION["privilege"];
+				$_SESSION["name"] = $name;
+				echo $_SESSION["name"];
 			}
 		
 
