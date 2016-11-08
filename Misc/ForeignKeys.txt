@@ -4,7 +4,6 @@ Warehouse
 Address
 	
 Financial transaction (done)
-	ClientID
 	OrderID
 	
 Courier		(done)
@@ -42,6 +41,9 @@ payment_Details (done)
 employee (done)
 	BranchID
 	addressID
+	LoginID
 	
 Clients (done)
 	addressID
+	LoginID
+Logins
