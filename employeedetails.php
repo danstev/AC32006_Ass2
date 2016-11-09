@@ -12,51 +12,74 @@
 <html>
 <title> </title>
 <body>
-	<h1>idk : Scubadiver bullshit what did we call us?</h1>
-
-	<article>
-	<h2></h2>
-	<p></p>
-	</article>
-
-	
-	<?php 
+ 
+<?php 
 include_once('scripts/ConnectToDB.php');
-
-$query = "SELECT*FROM user_account WHERE username = '$_SESSION["username"]';";
+$name = $_SESSION["username"];
+$query = "SELECT * FROM user_account WHERE username = '$name' ;";
 $result = mysql_query($query);
-$query2 = "SELECT*FROM employees WHERE accountID = '$result["accountID"]';";
-$employee = mysql_query($query);
+$accountID=$result["accountID"];
+$query2 = "SELECT * FROM employees WHERE accountID = '$accountID';";
+$employee = mysql_query($query2);
 ?>
 
-	
-
-	<?php include 'footer.php';?>
-
-
-</body>
 <?php 
 
+if ($query2=== '')
+{
 while($row = mysql_fetch_assoc($employee))
 {
 $employeeID= $row["employeeID"];
 $position= $row["position"];
 $FirstName= $row["Fname"];
+$LastName= $row["Lname"];
 $Salary= $row["salary"];
 $PhoneNumber= $row["phonenumber"];
 $Email= $row["email"];
 $DateOfBirth= $row["dateofbirth"];
 $AddressID= $row["addressID"];
-$BranchID= $row["branchID"]
-	
+$BranchID= $row["branchID"];  
 }
 
+
+
+$query3 ="SELECT*FROM address WHERE addressID ='$AddressID' ;";
+$Addressemployee = mysql_query($query3);
+
+
+
+while($row2 = mysql_fetch_assoc($Addressemployee))
+{
+$postcode= $row2["postcode"];
+$street= $row2["street"];
+$house= $row2["house"];
+$city= $row2["city"];
+$country= $row2["country"];   
+}
+
+$fullAddress =$house.' '.$street.' '.$city.' '.$postcode.' '.$country; 
+}
 ?>
 
-<h1>   DiveMasters</h1>
+<article>
+ <h1>Employee Personal Details</h1>
+
+ <h3>Employee ID: <?php   echo $employeeID;  ?></h3>
+ <h3>Position: <?php   echo $position;   ?></h3>
+ <h3>First Name: <?php   echo $FirstName;   ?></h3>
+ <h3>Last Name: <?php   echo $LastName;   ?></h3>
+ <h3>Date Of Birth: <?php   echo $DateOfBirth;  ?></h3>
+ <h3>Phone Number: <?php   echo $PhoneNumber; ?></h3>
+ <h3>Email: <?php   echo $Email; ?></h3>
+ <h3>Address:  <?php   echo $fullAddress; ?> </h3>
+ <h3>Salary: <?php   echo $Salary; ?></h3>
 
 
+  <?php include 'footer.php';?>
 
+
+</body>
+
+  </article>
 
 </html>
-
