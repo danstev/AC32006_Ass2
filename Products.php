@@ -22,20 +22,7 @@
 	<h2>Products</h2>
 
 	 //Auto Gen this using DB?
-		<form action="Products.php" method ="post">
-  		Refine By: <select name="Product Type">
-  		<option disabled selected value> Product Type </option>
-  		<option value="All">All</option>
-   		<option value="Mask">Masks</option>
-    	<option value="BCDs">BCDs</option>
-    	<option value="Dive Computer">Dive Computers</option>
-    	<option value="Fins">Fins</option>
-    	<option value="Regulator">Regulators</option>
-    	<option value="Snorkel">Snorkels</option>
-    	<option value="Wetsuit">Wetsuits</option>
-  		</select>
-  		<input type="submit" name="submit" value="Submit"/>
-		</form>
+	 <?php include "forms/refineandsearch.php";?>
 
 
 
@@ -50,9 +37,35 @@
 			$query = "SELECT * FROM products;";
 		}
 		$result = mysql_query($query);
-		?>
+	?>
+
+	<?php //Builds Query based on user search
+		$query = "SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;";
+		$stopWords = mysql_query($query);
+
+		$search = $_POST["search"];
+		echo "search: " . $search;
+
+		$searchNoStopWords = str_replace($stopWords, "", $search)
+
+		$searchLowCase = strtolower($searchNoStopWords);
+
+
+		$searchStripdPunc = preg_replace('/[^\w]+/', ' ', $searchLowCase);
+		echo "search no punctuation: " . $searchStripdPunc;
+
+		$keywords = strtok($searchStripdPunc, " ");
+		while ($tokens !== false)
+   		{
+   			echo "$tokens<br>";
+   			$query = "SELECT productID FROM products WHERE productName LIKE "%'$keywords'%" OR productType LIKE "%'$keywords'%" OR description LIKE "%'$keywords'%";";
+  			$result = mysql_query($query);
+  			$resultIDsArray = array_merge($resultsArray, mysql_fetch_array($result, 1)); //'1' specifies return array should have numeric index
+  			$tokens = strtok(" ");
+   		}
+	?>
 		
-		<?php //Displays table based on query results
+	<?php //Displays table based on query results
 		echo "<br><table border=\"5\" bordercolor=\"black\"
 		cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
 		collapse\" align=\"center\"><tr>";
@@ -70,7 +83,7 @@
 			echo "Sorry No Products Found";
 		}
  		echo "</table>";
-		?>
+	?>
 	
 	</article>
 
