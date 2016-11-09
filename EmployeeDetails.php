@@ -15,14 +15,48 @@
 	<h1>idk : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
-	<h2>what</h2>
-	<p>kjhgkhjg</p>
+	<h2></h2>
+	<p></p>
 	</article>
 
+	
+	<?php 
+include_once('scripts/ConnectToDB.php');
+
+$query = "SELECT*FROM user_account WHERE username = '$_SESSION["username"]';";
+$result = mysql_query($query);
+$query2 = "SELECT*FROM employees WHERE accountID = '$result["accountID"]';";
+$employee = mysql_query($query);
+?>
+
+	
 
 	<?php include 'footer.php';?>
 
 
 </body>
+<?php 
+
+while($row = mysql_fetch_assoc($employee))
+{
+$employeeID= $row["employeeID"];
+$position= $row["position"];
+$FirstName= $row["Fname"];
+$Salary= $row["salary"];
+$PhoneNumber= $row["phonenumber"];
+$Email= $row["email"];
+$DateOfBirth= $row["dateofbirth"];
+$AddressID= $row["addressID"];
+$BranchID= $row["branchID"]
+	
+}
+
+?>
+
+<h1>   DiveMasters</h1>
+
+
+
 
 </html>
+
