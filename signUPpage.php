@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	include_once('scripts/ConnectToDB.php');
 	$err = 0;
-	$errCode = "";
+	$errCode = "Errors: <br>";
 
 	//Trim removes whitespaces, so no problems inserting into db
 	$username =mysql_real_escape_string(trim($_POST['username']));
@@ -44,18 +44,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   	$username = strip_tags($username);
 	//htmlspeicalchars escapes some characters 
  	$username = htmlspecialchars($username);
- 	$nameCheckQuery = mysql_query("Select username from Clients where username = '$userName'");
- 	if(mysql_num_rows($nameCheckQuery) > 0)
- 	{
- 		$err += 1;
- 		$errCode += "Your username is in use, please select another username<br>";;
- 	}
+ 	$nameCheckQuery = mysql_query("Select username from logins where username = '$username';");
+	while($usrRow = mysql_fetch_array($nameCheckQuery))
+	{
+		$name = $usrRow["username"]; //Not sure if this is correct?
+		if( $name == $username)
+		{
+			$err += 1;
+			$errCode += "Your username is in use, please select another username<br>";
+		}
+	}
+
  
-	$Fname =mysql_real_escape_string(trim($_POST['firstName']));
+	$Fname = mysql_real_escape_string(trim($_POST['firstName']));
   	$Fname = strip_tags($Fname);
  	$Fname = htmlspecialchars($Fname);
 	
-	$Lname =mysql_real_escape_string(trim($_POST['lastName']));
+	$Lname = mysql_real_escape_string(trim($_POST['lastName']));
   	$Lname = strip_tags($Lname);
  	$Lname = htmlspecialchars($Lname);
 	
@@ -63,16 +68,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   	$phoneNumber = strip_tags($phoneNumber);
  	$phoneNumber = htmlspecialchars($phoneNumber);
 	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
-	$phoneCheckQuery = mysql_query("Select phoneNumber from Clients where username = '$phoneNumber'");
- 	if(mysql_num_rows($phoneCheckQuery) > 0)
+	$phoneCheckQuery = mysql_query("Select phoneNumber from Clients where phoneNumber = '$phoneNumber'");
+ 	if($phoneCheckQuery)
  	{
  		$err += 1;
  		$errCode += "Your phone number is in use, please select another phone number<br>";
  	};
 	$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); // mysql_real_escape_string
 
-	$emailCheckQuery = mysql_query("Select phoneNumber from Clients where username = '$email'");
- 	if(mysql_num_rows($emailCheckQuery) > 0)
+	$emailCheckQuery = mysql_query("Select email from Clients where email = '$email'");
+ 	if($emailCheckQuery)
  	{
  		$err += 1;
  		$errCode += "Your email is in use, please select another email<br>";;
@@ -91,20 +96,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
   	$dateofbirth = preg_replace("([^0-9/])", "", $_POST['dateofbirth']);// mysql_real_escape_string
 	$dateofbirth = date("y-m-d", strtotime($dateofbirth));
 	
-	if( $err === 0)
+	if( !($err != 0))
 	{
-		$query = "INSERT INTO clients (Fname, Lname, phoneNumber, email, userName, passwords, dateofbirth)
-		VALUES ('$Fname', '$Lname', '$phoneNumber', '$email', '$username',  '$pwdencrypt', '$dateofbirth');";
+		$query = "INSERT INTO clients (Fname, Lname, phoneNumber, email, dateofbirth)
+		VALUES ('$Fname', '$Lname', '$phoneNumber', '$email', '$dateofbirth');";
 		$result = MYSQL_QUERY($query);
+		$accountQuery = "INSERT INTO logins (username, passwords) VALUES ('$username', '$pwdencrypt');";
+		$loginResult = MYSQL_QUERY($accountQuery);
 		//echo $result;
 		echo "Thank you for signing up on our website .";
 	}
 	else
 	{
 		//Work out how to save certain form items so user doesn't have to completely redo whole form
-		echo $errCode;		
+		echo $errCode;	
+		echo $err;
 	}
-		
+	include_once('scripts/CloseConnection.php');
 }
 
 ?>
@@ -112,8 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
 	<?php include 'footer.php';?>
-
-	<?php include 'scripts/CloseConnection.php';?>	
 
 </body>
 
