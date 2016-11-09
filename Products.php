@@ -39,7 +39,7 @@
 
 
 
-	<?php //Gets and displays all products in table
+	<?php //Builds Query based on user refinements
 		if(isset($_POST["submit"]) && $_POST["Product_Type"] !== "All")
 		{
 			$prodType = $_POST["Product_Type"];
@@ -50,6 +50,9 @@
 			$query = "SELECT * FROM products;";
 		}
 		$result = mysql_query($query);
+		?>
+		
+		<?php //Displays table based on query results
 		echo "<br><table border=\"5\" bordercolor=\"black\"
 		cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
 		collapse\" align=\"center\"><tr>";
@@ -67,7 +70,7 @@
 			echo "Sorry No Products Found";
 		}
  		echo "</table>";
-?>
+		?>
 	
 	</article>
 
