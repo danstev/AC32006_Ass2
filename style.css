@@ -1,10 +1,4 @@
-footer.foot {
-	position:absolute; 
-	bottom:0; 
-	width: 100%; 
-	height: 60px; 
-	background-color: #C0FFEE;
-}
+
 
 html {
 	position: relative;
@@ -15,5 +9,35 @@ body {
 }
 
 h1 {
-	text-ailgn: center;	
+	text-align: center;	
+	background-color: #1affc2;
+	margin: 0;
 }
+h1.header{
+	background-color: #00cc96;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+	background-color: #80ffdd;
+	margin: 0;
+}
+
+article {
+	background-color: #C0FFEE;
+	margin: 0;
+}
+
+div {
+	margin: 0;
+}
+
+div.row {
+	
+}
+
+div.container {
+
+}
+
