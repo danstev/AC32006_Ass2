@@ -45,13 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	//htmlspeicalchars escapes some characters 
  	$username = htmlspecialchars($username);
  	$nameCheckQuery = mysql_query("Select username from logins where username = '$username';");
+	
 	while($usrRow = mysql_fetch_array($nameCheckQuery))
 	{
 		$name = $usrRow["username"]; //Not sure if this is correct?
 		if( $name == $username)
 		{
 			$err += 1;
-			$errCode += "Your username is in use, please select another username<br>";
+			$errCode .= "Your username is in use, please select another username<br>";
 		}
 	}
 
@@ -69,25 +70,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
  	$phoneNumber = htmlspecialchars($phoneNumber);
 	$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
 	$phoneCheckQuery = mysql_query("Select phoneNumber from Clients where phoneNumber = '$phoneNumber'");
- 	if($phoneCheckQuery)
- 	{
- 		$err += 1;
- 		$errCode += "Your phone number is in use, please select another phone number<br>";
- 	};
+	
+	while($PhoneRow = mysql_fetch_array($phoneCheckQuery))
+	{
+		$phone = $PhoneRow["phoneNumber"]; //Not sure if this is correct?
+		if( $phone == $phoneNumber)
+		{
+			$err += 1;
+			$errCode .= "Your phone number is in use, please select another phone number<br>";
+		}
+	}
+	
 	$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); // mysql_real_escape_string
 
 	$emailCheckQuery = mysql_query("Select email from Clients where email = '$email'");
- 	if($emailCheckQuery)
- 	{
- 		$err += 1;
- 		$errCode += "Your email is in use, please select another email<br>";;
- 	};
+	
+	while($emailRow = mysql_fetch_array($emailCheckQuery))
+	{
+		$emailAdd = $emailRow["email"]; //Not sure if this is correct?
+		if( $emailAdd == $email)
+		{
+			$err += 1;
+			$errCode .= "Your email address is in use, please select another email address.<br>";
+		}
+	}
 	
 	if (strcmp($_POST['passwords'], $_POST['passwordRepeat']) !== 0)
 	{
 		$err += 1;
-		$errCode += "Your passwords do not match!<br>";
+		$errCode .= "Your passwords do not match!<br>";
 	};
+	
 	$passwords =mysql_real_escape_string(trim($_POST['passwords']));
   	$passwords = strip_tags($passwords);
  	$passwords = htmlspecialchars($passwords);
@@ -101,16 +114,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$query = "INSERT INTO clients (Fname, Lname, phoneNumber, email, dateofbirth)
 		VALUES ('$Fname', '$Lname', '$phoneNumber', '$email', '$dateofbirth');";
 		$result = MYSQL_QUERY($query);
-		$accountQuery = "INSERT INTO logins (username, passwords) VALUES ('$username', '$pwdencrypt');";
-		$loginResult = MYSQL_QUERY($accountQuery);
 		//echo $result;
+		
+		//Add client id to the login table
+		$IdQuery = "Select clientID from Clients where email='$email';";
+		$idClient = MYSQL_QUERY($IdQuery);
+		while($idRow = mysql_fetch_array($idClient))
+		{
+			$newID = $idRow["clientID"];
+			$accountQuery = "INSERT INTO logins (username, passwords, clientID) VALUES ('$username', '$pwdencrypt', '$newID');";
+			$loginResult = MYSQL_QUERY($accountQuery);
+		}
+		
 		echo "Thank you for signing up on our website .";
 	}
 	else
 	{
 		//Work out how to save certain form items so user doesn't have to completely redo whole form
-		echo $errCode;	
+		echo "<br>";	
 		echo $err;
+		echo "<br>";
+		echo $errCode;
 	}
 	include_once('scripts/CloseConnection.php');
 }
