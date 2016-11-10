@@ -12,7 +12,7 @@
 
 <html>
 <?php include 'header.php';?>
-<title> </title>
+<title>Products : ScubaDiver</title>
 
 <body>
 
@@ -24,6 +24,42 @@
 	 //Auto Gen this using DB?
 	 <?php include "forms/refineandsearch.php";?>
 
+	 <form action="Products.php" method ="post" enctype="multipart/form-data">
+	 Refine By: <select name= "Product_Type">
+	 <?php
+	 	$query = "SELECT productType FROM products;";
+	 	$result = mysql_query($query);
+	 	echo "<option value=\"All\">All</option>";
+	 	while($row = mysql_fetch_assoc($result))
+	 	{
+	 		if(added($row["productType"], $added))
+	 		{
+	 			array_push($added, $row["productType"]);
+
+	 			echo '<option value= '. $row['productType'] . '>' . $row['productType'] . '</option>';
+	 		}
+	 	}
+	 ?>
+	 </select>
+
+	 <?php 
+	 	function added($toAdd, $added)
+	 	{
+	 		echo "	IN ADDED";
+	 		for($i=0; $i < count($added); $i++)
+	 		{
+	 			if($added[i] == $toAdd)
+	 			{
+	 				$add = fasle;
+	 			}
+	 			else
+	 			{
+	 				$add = true;
+	 			}
+	 		}
+	 		return $add;
+	 	}
+	 ?>
 
 
 	<?php //Builds Query based on user refinements
