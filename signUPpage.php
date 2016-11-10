@@ -12,13 +12,15 @@
 <html>
 <title> </title>
 <body>
+
+	<?php include 'header.php';?>
 	<h1>Home : Welcome to Scubadiver </h1>
 
 	<article>
 	<h2>Welcome to scuba something, buy our shit</h2>
 	<p>
 	<?php
-		if(session_id() == '')
+		if(session_id() === '')
 		{
 			echo 'You can signup here!';
 			include 'forms/RegisterForm.php';
