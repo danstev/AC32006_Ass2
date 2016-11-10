@@ -11,6 +11,7 @@
 <?php include 'scripts/ConnectToDB.php';?>
 
 <?php
+
 	if(isset($_POST["submit"]))
 	{ //detect form submission
 		$username = $_POST["username"];
@@ -30,13 +31,16 @@
 					{
 						$priv = "customer";
 						$id = $row["clientID"];
-						$_SESSION["cusID"] =$row["clientID"];
+						
+						
+						//Get name for uses elsewhere?
 						$cusQuery = "SELECT * FROM clients where clientID = '$id';";
 						$cusResult = mysql_query($cusQuery);
 						while($cusRow = mysql_fetch_array($cusResult))
 						{
-							$name = $cusRow["fname"]; //Not sure if this is correct?
+							$name = $cusRow["Fname"]; //Not sure if this is correct?
 						}
+
 
 					}
 					else if( $row["employeeID"] > 0)
@@ -53,25 +57,37 @@
 					else
 					{
 						//How would it even get here? Maybe make a script which sets this everytime you are not signed in on page?? or even if you are signed in display different stuff, default is not signed in
-						$priv = "notSignedIn";
+						$priv = "notSignedIn"; //Won't even be in use?
 					}
 				}
 			}
-			if($validUser === true)
+			
+			if($validUser == true)
 			{
 				session_start();
-				
-				
-				
+				echo "<br>";
 				$_SESSION["privilege"] = $priv;
 				echo $_SESSION["privilege"];
+				echo "<br>";
 				$_SESSION["name"] = $name;
 				echo $_SESSION["name"];
+				echo "<br>";
+				
+				if( $priv == "customer" )
+				{
+					$_SESSION["cusID"] = $id;
+					echo $_SESSION["cusID"];
+					echo "<br>";
+				}
+				else
+				{
+					$_SESSION["empID"] = $id;
+					echo $_SESSION["empID"];
+					echo "<br>";
+				}
+				
 			}
 		
-
-
-
 		if($validUser)//Would actually query database, bool verifyUser()
 		{
 			$message = "logged in successfully"; 
