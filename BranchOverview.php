@@ -12,6 +12,59 @@
 <html>
 <title> </title>
 <body>
+
+<?php 
+include_once('scripts/ConnectToDB.php');
+$name = $_SESSION["username"];
+$query = "SELECT * FROM user_account WHERE username = '$name' ;";
+$result = mysql_query($query);
+$accountID=$result["accountID"];
+$query2 = "SELECT * FROM employees WHERE accountID = '$accountID';";
+$employee = mysql_query($query2);
+$employee_branch = $employee["branchID"];
+$query3 = "SELECT * FROM branches WHERE branchID = '$employee_branch';";
+$branch = mysql_query($query3);
+$query4 = "SELECT * FROM employee WHERE branchID ='$employee_branch';";
+$employess = mysql_query($query4);
+?>
+
+
+
+
+<?php 
+
+while($row = mysql_fetch_assoc($branch))
+{
+$BranchID= $row["branchID"];
+$floor_staff= $row["fl_staff"];
+$Managers= $row["managers"];
+}
+
+while($row = mysql_fetch_assoc($employees))
+{
+$employeeID= $row["employeeID"];
+$position= $row["position"];
+$FirstName= $row["Fname"];
+$LastName= $row["Lname"];
+$Salary= $row["salary"];
+$PhoneNumber= $row["phonenumber"];
+$Email= $row["email"];
+$DateOfBirth= $row["dateofbirth"];
+$AddressID= $row["addressID"];
+
+
+$query3 ="SELECT*FROM address WHERE addressID ='$AddressID' ;";
+$Addressemployee = mysql_query($query3);
+
+
+}
+
+
+?>
+
+
+
+
 	<h1>idk : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
