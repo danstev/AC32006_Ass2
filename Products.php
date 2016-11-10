@@ -40,29 +40,70 @@
 	?>
 
 	<?php //Builds Query based on user search
-		$query = "SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;";
-		$stopWords = mysql_query($query);
-
+	if(isset($_POST["submit"]) && $_POST["search"] !== "")
+	{
 		$search = $_POST["search"];
-		echo "search: " . $search;
-
-		$searchNoStopWords = str_replace($stopWords, "", $search)
-
-		$searchLowCase = strtolower($searchNoStopWords);
-
-
+		$searchLowCase = strtolower($search);
 		$searchStripdPunc = preg_replace('/[^\w]+/', ' ', $searchLowCase);
-		echo "search no punctuation: " . $searchStripdPunc;
-
 		$keywords = strtok($searchStripdPunc, " ");
-		while ($tokens !== false)
+		
+		while ($keywords !== false)
    		{
-   			echo "$tokens<br>";
-   			$query = "SELECT productID FROM products WHERE productName LIKE "%'$keywords'%" OR productType LIKE "%'$keywords'%" OR description LIKE "%'$keywords'%";";
+   			$query = "SELECT productID FROM products WHERE productName LIKE '%$keywords%' OR productType LIKE '%$keywords%' OR description LIKE '%$keywords%';";
   			$result = mysql_query($query);
-  			$resultIDsArray = array_merge($resultsArray, mysql_fetch_array($result, 1)); //'1' specifies return array should have numeric index
-  			$tokens = strtok(" ");
+  			
+  			$resultArray = [];
+  			while($row = mysql_fetch_array($result))
+  			{
+  				$resultArray[] = $row["productID"];
+  			}
+  			
+  			$resultIDsArray = [];
+  			$resultIDsArray = array_merge($resultIDsArray, $resultArray); //'1' specifies return array should have numeric index
+  			$keywords = strtok(" ");
    		}
+
+   		$queryCondition = implode(" OR ",$resultIDsArray);
+   		$query = "SELECT * from products WHERE productID = $queryCondition;";
+   		$result = mysql_query($query);
+   	}	
+	?>
+
+	<?php
+		if(isset($_POST["submit"]) && $_POST["search"] !== "" && $_POST["Product_Type"] !== "All")
+		{
+			$prodType = $_POST["Product_Type"];
+			$search = $_POST["search"];
+			$searchLowCase = strtolower($search);
+			$searchStripdPunc = preg_replace('/[^\w]+/', ' ', $searchLowCase);
+			$keywords = strtok($searchStripdPunc, " ");
+		
+		while ($keywords !== false)
+   		{
+   			$query = "SELECT productID FROM products WHERE productType = '$prodType' AND productName LIKE '%$keywords%' OR productType LIKE '%$keywords%' OR description LIKE '%$keywords%';";
+  			$result = mysql_query($query);
+  			
+  			$resultArray = [];
+  			while($row = mysql_fetch_array($result))
+  			{
+  				$resultArray[] = $row["productID"];
+  			}
+  			
+  			$resultIDsArray = [];
+  			$resultIDsArray = array_merge($resultIDsArray, $resultArray); //'1' specifies return array should have numeric index
+  			$keywords = strtok(" ");
+   		}
+
+   		$queryCondition = implode(" OR ",$resultIDsArray);
+   		$query = "SELECT * from products WHERE productID = $queryCondition;";
+   		$result = mysql_query($query);
+
+
+		}
+	?>
+
+	<?php
+
 	?>
 		
 	<?php //Displays table based on query results
@@ -71,6 +112,7 @@
 		collapse\" align=\"center\"><tr>";
 		if($result !== false)
 		{
+
 			while($row = mysql_fetch_array($result)){
 				$imagePath = $row["imageLink"];
 				echo "<td>";
