@@ -64,7 +64,10 @@
 			
 			if($validUser == true)
 			{
-				session_start();
+				if(session_id() === '')
+					{
+						session_start();
+					}
 				echo "<br>";
 				$_SESSION["privilege"] = $priv;
 				echo $_SESSION["privilege"];
@@ -108,13 +111,24 @@
 <title> </title>
 <body>
 	<?php include 'header.php';?>
+	<?php include 'scripts/sessionStart.php';?>
 	<h1>Log In : Scubadiver bullshit hwat did we call us?</h1>
 	
 	<article>
 	<h2>Log in</h2>
 	</article>
 		<h3><?php  echo $message; ?><br/></h3>
-		<?php include 'forms/LoginForm.php'; ?>
+		<?php include 'forms/LoginForm.php'; 
+		if($_SESSION["privilege"] = '')
+		{
+			echo 'You can login here!';
+			include 'forms/LoginForm.php';
+		}
+		else{
+			echo 'You are already logged in!';
+		}
+		
+		/>
 	</article>
 
 
