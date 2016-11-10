@@ -107,6 +107,7 @@
 <html>
 <title> </title>
 <body>
+	<?php include 'header.php';?>
 	<h1>Log In : Scubadiver bullshit hwat did we call us?</h1>
 	
 	<article>
