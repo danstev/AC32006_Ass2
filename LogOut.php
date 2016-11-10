@@ -12,6 +12,7 @@
 <html>
 <title>Logout : ScubaDivers </title>
 <body>
+	<?php include 'header.php';?>
 	<h1>Log out : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
@@ -20,7 +21,7 @@
 	<?php include 'scripts/sessionEnd.php';?>
 	</article>
 		
-	<?php include 'footer.html';?>
+	<?php include 'footer.php';?>
 
 </body>
 
