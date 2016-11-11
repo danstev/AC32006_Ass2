@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <form action="Products.php" method ="post" enctype="multipart/form-data">
   	Refine By: <select name ="Product_Type">
 <form action="Products.php" method ="post" enctype="multipart/form-data">
@@ -45,7 +45,7 @@
   	Search: <input type="text" name="search" value="">
 
   	<input type="submit" name="submit" value="Search"/>
-=======
+
 <form action="Products.php" method ="post" enctype="multipart/form-data">
   	Refine By: <select name ="Product_Type">
 <form action="Products.php" method ="post" enctype="multipart/form-data">
@@ -92,5 +92,4 @@
   	Search: <input type="text" name="search" value="">
 
   	<input type="submit" name="submit" value="Search"/>
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 </form>
