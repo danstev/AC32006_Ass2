@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -88,7 +88,7 @@ while($row = mysql_fetch_array($query))
 </body>
 
 </html>
-=======
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
