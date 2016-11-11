@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <header>
+=======
+<header style="  width: 100%; height: 10%; background-color: #80ffdd; text-align:center;  margin:auto;">
+>>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 <div class="container"> 
  <div class="row">
  

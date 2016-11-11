@@ -31,6 +31,7 @@ h2 {
 article {
 	background-color: #C0FFEE;
 	margin: 0;
+<<<<<<< HEAD
 }
 
 div {
@@ -40,12 +41,23 @@ div {
 div.row {
 	
 	
+=======
+}
+
+div {
+	margin: 0;
+}
+
+div.row {
+	
+>>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 }
 
 div.container {
 
 }
 
+<<<<<<< HEAD
 footer {
   position: absolute;
   right: 0;
@@ -65,3 +77,5 @@ header {
 	text-align: center;
 }
 
+=======
+>>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
