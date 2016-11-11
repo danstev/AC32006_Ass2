@@ -10,13 +10,26 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title> </title>
+<title>Payment Details : Scubadiver </title>
 <body>
-	<h1>idk : Scubadiver bullshit what did we call us?</h1>
+	<?php include 'header.php';?>
+	<?php include 'scripts/sessionStart.php';?>
+	<h1>Payment Details : Scubadiver</h1>
 
 	<article>
-	<h2>what</h2>
-	<p>kjhgkhjg</p>
+	
+	//Display form if logged in and a customer
+	//Display empty form if no payment details are 
+	//Display full form if details are in dba_close
+	//Give option to delete payment details from db
+	<?php
+	if($_SESSION['privilege'] == 'customer')
+	{
+		include 'forms/PaymentDetailForm.php';
+		
+	}
+	
+	?>
 	</article>
 
 

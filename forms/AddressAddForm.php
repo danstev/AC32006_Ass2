@@ -1,28 +1,20 @@
 <form action="signUPpage.php" method="post">
 
-		Username:<br />
-		<input name="username" type="text" /><br />
+		Postcode :<br />
+		<input name="PostCode" type="text" /><br />
 	
-		First name:<br />
-		<input name="firstName" type="text" /><br />
+		Street :<br />
+		<input name="street" type="text" /><br />
 	
-		Last name:<br />
-		<input name="lastName" type="text" /><br />
-	
-		Phone Number:<br />
-		<input name="phoneNumber" type="numeric" /><br /> 
-
-		Email:<br />
-		<input name="email" type="email" /><br />
-
-		Password:<br />
-		<input name="passwords" type="password" /><br />
+		House number :<br />
+		<input name="houseNo" type="numeric" /><br /> 
 		
-		Password repeat:<br />
-		<input name="passwordRepeat" type="password" /><br />
+		City :<br />
+		<input name="city" type="text" /><br />
+		
+		County :<br />
+		<input name="county" type="text" /><br />
 
-		Data of Birth: <br />
-		<input name="dateofbirth" type="date" /><br />
 
 		<input type="submit" />
 

@@ -6,8 +6,8 @@
 		Card number:<br />
 		<input name="number" type="text" /><br />
 	
-		Name on card:<br />
-		<input name="cardname" type="text" /><br />
+		Cardholder Address:<br />
+		<input name="add" type="text" /><br />
 	
 		Expiration Date:<br />
 		<input name="expDate" type="date" /><br />

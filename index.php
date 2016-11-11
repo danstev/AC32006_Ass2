@@ -10,20 +10,20 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title> </title>
+<title> Home : ScubaDiver</title>
 <body>
+	<?php include 'header.php';?>
+	<?php include 'scripts/sessionStart.php';?>
 	<h1>Home : Scubadiver bullshit what did we call us?</h1>
-	<?php include 'scripts/ConnectToDB.php';?>
-
-	<article>
 	<h2>Welcome to scuba something, buy our shit</h2>
+	
+	<article>
+	
 	<p>Look at all the bullshit we have</p>
 	</article>
 
 
-	<?php include 'footer.html';?>
-
-	<?php include 'scripts/CloseConnection.php';?>	
+	<?php include 'footer.php';?>
 
 </body>
 
