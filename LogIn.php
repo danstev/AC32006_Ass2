@@ -68,7 +68,6 @@
 					{
 						session_start();
 					}
-<<<<<<< HEAD
 				//echo "<br>";
 				$_SESSION["privilege"] = $priv;
 				//echo $_SESSION["privilege"];
@@ -76,7 +75,6 @@
 				$_SESSION["name"] = $name;
 				//echo $_SESSION["name"];
 				//echo "<br>";
-=======
 				echo "<br>";
 				$_SESSION["privilege"] = $priv;
 				echo $_SESSION["privilege"];
@@ -84,29 +82,22 @@
 				$_SESSION["name"] = $name;
 				echo $_SESSION["name"];
 				echo "<br>";
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 				
 				if( $priv == "customer" )
 				{
 					$_SESSION["cusID"] = $id;
-<<<<<<< HEAD
 					//echo $_SESSION["cusID"];
 					//echo "<br>";
-=======
 					echo $_SESSION["cusID"];
 					echo "<br>";
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 				}
 				else
 				{
 					$_SESSION["empID"] = $id;
-<<<<<<< HEAD
 					//echo $_SESSION["empID"];
 					//echo "<br>";
-=======
 					echo $_SESSION["empID"];
 					echo "<br>";
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 				}
 				
 			}
@@ -136,15 +127,12 @@
 	
 	<article>
 	<h2>Log in</h2>
-	</article>
+
 		<h3><?php  echo $message; ?><br/></h3>
-<<<<<<< HEAD
 		<?php 
 		if($_SESSION["privilege"] == '')
-=======
 		<?php include 'forms/LoginForm.php'; 
 		if($_SESSION["privilege"] = '')
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
 		{
 			echo 'You can login here!';
 			include 'forms/LoginForm.php';
@@ -153,11 +141,8 @@
 			echo 'You are already logged in!';
 		}
 		
-<<<<<<< HEAD
 		?>
-=======
-		/>
->>>>>>> bb1cfb2ea72dc3afa70887398d5f220ddb4750c1
+	
 	</article>
 
 
