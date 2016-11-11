@@ -15,49 +15,47 @@
  
 <?php 
 include_once('scripts/ConnectToDB.php');
-$name = $_SESSION["username"];
-$query = "SELECT * FROM user_account WHERE username = '$name' ;";
-$result = mysql_query($query);
-$accountID=$result["accountID"];
-$query2 = "SELECT * FROM employees WHERE accountID = '$accountID';";
-$employee = mysql_query($query2);
-?>
+include_once('scripts/sessionStart.php');
 
-<?php 
-
-if ($query2=== '')
+if($_SESSION["privilege"] !== "customer" || $_SESSION["privilege"] !== '' || !isset($_SESSION['privilege']))
 {
-while($row = mysql_fetch_assoc($employee))
-{
-$employeeID= $row["employeeID"];
-$position= $row["position"];
-$FirstName= $row["Fname"];
-$LastName= $row["Lname"];
-$Salary= $row["salary"];
-$PhoneNumber= $row["phonenumber"];
-$Email= $row["email"];
-$DateOfBirth= $row["dateofbirth"];
-$AddressID= $row["addressID"];
-$BranchID= $row["branchID"];  
-}
+	$id = $_SESSION["empID"];
+	
+	$query = "SELECT * FROM employees WHERE employeeID = '$id';";
+	$employee = mysql_query($query2); 
 
+	if ($query2=== '') //If query is null?
+	{
+		while($row = mysql_fetch_assoc($employee))
+		{
+			//$employeeID= $row["employeeID"]; why display this?
+			
+			$FirstName= $row["Fname"];
+			$LastName= $row["Lname"];
+			$BranchID= $row["branchID"]; //Maybe link branch here?
+			$position= $row["position"];
+			$Salary= $row["salary"];
+			$PhoneNumber= $row["phonenumber"];
+			$Email= $row["email"];
+			$DateOfBirth= $row["dateofbirth"];
+			$AddressID= $row["addressID"];
+			 
+		}
+	}
 
+	$query3 ="SELECT*FROM address WHERE addressID ='$AddressID' ;";
+	$Addressemployee = mysql_query($query3);
 
-$query3 ="SELECT*FROM address WHERE addressID ='$AddressID' ;";
-$Addressemployee = mysql_query($query3);
+	while($row2 = mysql_fetch_assoc($Addressemployee))
+	{
+		$postcode= $row2["postcode"];
+		$street= $row2["street"];
+		$house= $row2["house"];
+		$city= $row2["city"];
+		$country= $row2["country"];   
+	}
+	$fullAddress =$house.' '.$street.' '.$city.' '.$postcode.' '.$country; 
 
-
-
-while($row2 = mysql_fetch_assoc($Addressemployee))
-{
-$postcode= $row2["postcode"];
-$street= $row2["street"];
-$house= $row2["house"];
-$city= $row2["city"];
-$country= $row2["country"];   
-}
-
-$fullAddress =$house.' '.$street.' '.$city.' '.$postcode.' '.$country; 
 }
 ?>
 
