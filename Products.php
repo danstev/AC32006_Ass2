@@ -22,58 +22,9 @@
 	<article>
 	<h2>Products</h2>
 
-	 //Auto Gen this using DB?
 	 <?php include "forms/refineandsearch.php";?>
 
-	 <form action="Products.php" method ="post" enctype="multipart/form-data">
-	 Refine By: <select name= "Product_Type">
-	 <?php
-		
-	 	function addCompare($toAdd, $added)
-	 	{
-	 		echo " IN ADDED ";
-			$add = false;
-			echo var_dump($added);
-			echo var_dump($toAdd);
-	 		for($i=0; $i < count($added); $i++)
-	 		{
-	 			if($added[$i] == $toAdd)
-	 			{
-	 				$add = false;
-	 			}
-	 			else
-	 			{
-	 				$add = true;
-	 			}
-	 		}
-	 		return $add;
-	 	}
-		
-	 	$query = "SELECT productType FROM products;";
-	 	$result = mysql_query($query);
-		$added = array();
-		array_push($added, "All");
-	 	//echo "<option value=\"All\">All</option>";
-	 	while($row = mysql_fetch_assoc($result))
-	 	{
-			$prod = $row["productType"];
-	 		if( addCompare($prod, $added) )
-	 		{
-	 			array_push($added, $prod);
-
-	 			//echo '<option value= '. $row['productType'] . '>' . $row['productType'] . '</option>';
-	 		}
-	 	}
-		for($x = 0; $x < count($added); $x++) {
-			echo '<option value= '. $added[$x] . '>' . $added[$x] . '</option>';
-		}
-		//echo var_dump($added);
-	 ?>
-	 </select>
-
-
-
-
+	 
 	<?php //Builds Query based on user refinements
 		if(isset($_POST["submit"]) && $_POST["Product_Type"] !== "All")
 		{
