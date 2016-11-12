@@ -12,6 +12,7 @@
 <html>
 <title> </title>
 <body>
+	<?php include 'header.php';?>
 	<h1>Contact Us : Scubadiver bullshit what did we call us?</h1>
 	<?php include 'scripts/ConnectToDB.php';?>
 
@@ -21,7 +22,7 @@
 	</article>
 
 
-	<?php include 'footer.html';?>
+	<?php include 'footer.php';?>
 
 	<?php include 'scripts/CloseConnection.php';?>	
 

@@ -4,10 +4,10 @@
 		<input name="supplier" type="text" /><br />
 
 		Email:<br />
-		<input name="Email" type="text" /><br />
+		<input name="email" type="text" /><br />
 
 		Phone number:<br />
-		<input name="PhoneNumber" type="text" /><br />
+		<input name="phoneNumber" type="text" /><br />
 	
 
 		<input type="submit" />

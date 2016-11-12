@@ -8,6 +8,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="style.css">
+<?php include 'Scripts/sessionStart.php'; ?>
+<?php include 'databaseoutput.php'; ?>
+<?php include 'Scripts/ConnectToDB.php';?>
 
 <html>
 <title> </title>
@@ -18,14 +21,31 @@
 
 	<?php
 
-	if(session_id() == '')
+	if($_SESSION["privilege"] == '')
 	{
-		
+		echo "<p> please login to view this page </p>";
 
 	}
 	else if($_SESSION["privilege"] === "customer")
 	{
-		if ($_SERVER['REQUEST_METHOD'] === 'GET')
+		$customerID = $_SESSION["cusID"];
+		$query = "SELECT orderID, totalCost, orderDate, address FROM orders WHERE clientID = $customerID;";
+		$result = mysql_query($query);
+		if($result !== false)
+		{
+			while($row = mysql_fetch_array($result)){
+				
+				$hyperlink;
+				echo "<td>";
+				echo "<a href=\"index.php\">" . $row["productType"]." </td><td>".$row["productName"]."</td><td>". "<img src = '$imagePath' >"."</td><td>".$row["description"]."</td><td>£". $row["cost"];
+				echo "</td></a></tr>";
+			}
+		}
+		else
+		{
+			echo "Sorry No Products Found";
+		}
+		/*if ($_SERVER['REQUEST_METHOD'] === 'GET')
 		{
 			$orderID = $_GET["id"];
 			$cusQuery = "SELECT * from orders where orderID = '$orderID';";
@@ -45,7 +65,7 @@
 		else
 		{
 			//Display form
-		}
+		}*/
 
 	}
 	else if($_SESSION["privilege"] === "employee")

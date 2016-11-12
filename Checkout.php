@@ -21,7 +21,7 @@
 	</article>
 
 
-	<?php include 'footer.html';?>
+	<?php include 'footer.php';?>
 
 	<?php include 'scripts/CloseConnection.php';?>	
 

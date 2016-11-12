@@ -1,19 +1,66 @@
-footer.foot {
-	position:absolute; 
-	bottom:0; 
-	width: 100%; 
-	height: 60px; 
-	background-color: #C0FFEE;
-}
+
 
 html {
 	position: relative;
 	min-height: 100%;
+	margin: 0;
+    padding: 0;
 }
 body {
-	margin-bottom: 60px;
+	margin: 0;
+    padding: 0;
+	margin-bottom: 10%;
 }
 
 h1 {
-	text-ailgn: center;	
+	text-align: center;	
+	background-color: #99ffe4;
+	margin: 0;
 }
+h1.header{
+	background-color: #80ffdd; 
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+	background-color: #b3ffeb;
+	margin: 0;
+}
+
+article {
+	background-color: #C0FFEE;
+	margin: 0;
+}
+
+div {
+	margin: 0;
+}
+
+div.row {
+	
+	
+}
+
+div.container {
+
+}
+
+header {
+	width: 100%; 
+	height: 10%; 
+	background-color: #80ffdd; 
+	text-align:center;  
+	margin:auto;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #80ffdd;
+}
+
