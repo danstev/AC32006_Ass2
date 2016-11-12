@@ -140,10 +140,7 @@ WHERE employee.branchID = '$branchID[0]';");
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 	<h1>idk : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
@@ -151,13 +148,10 @@ WHERE employee.branchID = '$branchID[0]';");
 	<p>kjhgkhjg</p>
 	</article>
 <?php 
-<<<<<<< HEAD
 echo "<br><table border=\"5\" bordercolor=\"black\"
 		cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
 		collapse\" align=\"center\"><tr>
-=======
 echo "<br><table><tr>
->>>>>>> origin/master
 		<tr>
 		<th>First Name</th>
 		<th>Last Name</th>

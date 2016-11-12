@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 function printTable($result)
 {
@@ -25,7 +25,6 @@ function printTable($result)
  		echo "</table>";
 	return true;
 }
-=======
 <?php
 function printTable($result)
 {
@@ -52,5 +51,4 @@ function printTable($result)
  		echo "</table>";
 	return true;
 }
->>>>>>> origin/master
 ?>
