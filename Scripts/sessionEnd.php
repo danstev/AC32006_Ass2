@@ -10,6 +10,7 @@
 			session_unset(); 
 			session_destroy();
 			echo "You have successfully logged out, come back soon!";
+			<?php include 'header.php';?>
 	}
 
 ?> 

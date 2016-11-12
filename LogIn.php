@@ -14,7 +14,7 @@
 
 	if(isset($_POST["submit"]))
 	{ //detect form submission
-		$username = $_POST["username"];
+		$username =mysql_real_escape_string(trim($_POST["username"])); // need to test
 		$password = md5($_POST["password"]);
 		$validUser = false;
 		$priv = "";
