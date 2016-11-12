@@ -9,6 +9,8 @@
 
 <link rel="stylesheet" href="style.css">
 
+<?php include 'scripts/ConnectToDB.php'; ?>
+
 <html>
 <title>Add Supplier : ScubaDiver </title>
 <body>
@@ -17,19 +19,23 @@
 	<h1>idk : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
-	<?php
-		if($_SESSION["privilege"] === '')
-		{
-			echo 'You do not have access to this page.';
-			
-		}
-		else if($_SESSION["privilege"] === "admin")
+	<?php // Check Yo Privilege
+		if($_SESSION["privilege"] !== '' && $_SESSION["privilege"] !== 'customer' && $_SESSION["privilege"] !== 'employee')
 		{
 			include 'forms/AddSupplierForm.php';
 		}
+		else
+		{
+			echo 'You do not have access to this page.';
+			include 'forms/AddSupplierForm.php'; // Testing only
+			include 'databaseoutput.php';
+			$query = "SELECT nameOfSupplier, email, phoneNumber FROM supplier;";
+			$result = mysql_query($query);
+			printTable($result);
+		}
 	?>
 
-
+	<?php echo "Current Privilege" . $_SESSION["privilege"]; ?>
 
 	</article>
 
@@ -41,7 +47,7 @@
 	
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-	include_once('scripts/ConnectToDB.php');
+	
 	$err = 0;
 	$errCode = "";
 
