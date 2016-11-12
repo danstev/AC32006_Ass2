@@ -18,7 +18,7 @@ h1 {
 	margin: 0;
 }
 h1.header{
-	background-color: #80ffdd; 
+	background-color: #80ffdd;
 	margin: 0;
 }
 
@@ -42,8 +42,26 @@ div.row {
 	
 }
 
+div {
+	margin: 0;
+}
+
+div.row {
+	
+}
+
 div.container {
 
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #80ffdd;
+  text-align: center;
 }
 
 header {
@@ -53,14 +71,5 @@ header {
 	text-align:center;  
 	margin:auto;
 	text-align: center;
-}
-
-footer {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding: 1rem;
-	background-color: #80ffdd;
 }
 

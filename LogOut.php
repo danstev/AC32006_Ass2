@@ -13,7 +13,13 @@
 <title>Logout : ScubaDivers </title>
 <body>
 	<?php include 'header.php';?>
+<<<<<<< HEAD
 	<?php include 'scripts/sessionStart.php';?>
+=======
+
+	<?php include 'scripts/sessionStart.php';?>
+
+>>>>>>> origin/master
 	<h1>Log out : Scubadiver bullshit what did we call us?</h1>
 
 	<article>

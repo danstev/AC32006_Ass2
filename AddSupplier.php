@@ -10,7 +10,10 @@
 <link rel="stylesheet" href="style.css">
 
 <?php include 'scripts/ConnectToDB.php'; ?>
+<<<<<<< HEAD
 <?php include 'databaseoutput.php'; ?>
+=======
+>>>>>>> origin/master
 
 <html>
 <title>Add Supplier : ScubaDiver </title>
@@ -24,16 +27,20 @@
 		if($_SESSION["privilege"] !== '' && $_SESSION["privilege"] !== 'customer' && $_SESSION["privilege"] !== 'employee')
 		{
 			include 'forms/AddSupplierForm.php';
+<<<<<<< HEAD
 			if ($_SERVER['REQUEST_METHOD'] !== 'POST')
 			{
 				$query = "SELECT nameOfSupplier, email, phoneNumber FROM supplier;";
 				$result = mysql_query($query);
 				printTable($result);
 			}
+=======
+>>>>>>> origin/master
 		}
 		else
 		{
 			echo 'You do not have access to this page.';
+<<<<<<< HEAD
 			include 'forms/AddSupplierForm.php'; // Testing only vvvv
 			if ($_SERVER['REQUEST_METHOD'] !== 'POST')
 			{
@@ -41,6 +48,13 @@
 				$result = mysql_query($query);
 				printTable($result);
 			}
+=======
+			include 'forms/AddSupplierForm.php'; // Testing only
+			include 'databaseoutput.php';
+			$query = "SELECT nameOfSupplier, email, phoneNumber FROM supplier;";
+			$result = mysql_query($query);
+			printTable($result);
+>>>>>>> origin/master
 		}
 	?>
 

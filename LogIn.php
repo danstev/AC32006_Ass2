@@ -14,7 +14,7 @@
 
 	if(isset($_POST["submit"]))
 	{ //detect form submission
-		$username = $_POST["username"];
+		$username =mysql_real_escape_string(trim($_POST["username"])); // need to test
 		$password = md5($_POST["password"]);
 		$validUser = false;
 		$priv = "";
@@ -69,24 +69,50 @@
 						session_start();
 					}
 				//echo "<br>";
+<<<<<<< HEAD
 				$_SESSION["privilege"] = $priv;
 				//echo $_SESSION["privilege"];
 				//echo "<br>";
 				$_SESSION["name"] = $name;
 				//echo $_SESSION["name"];
 				//echo "<br>";
+=======
+				$_SESSION["privilege"] = $priv;
+				//echo $_SESSION["privilege"];
+				//echo "<br>";
+				$_SESSION["name"] = $name;
+				//echo $_SESSION["name"];
+				//echo "<br>";
+				echo "<br>";
+				$_SESSION["privilege"] = $priv;
+				echo $_SESSION["privilege"];
+				echo "<br>";
+				$_SESSION["name"] = $name;
+				echo $_SESSION["name"];
+				echo "<br>";
+>>>>>>> origin/master
 				
 				if( $priv == "customer" )
 				{
 					$_SESSION["cusID"] = $id;
 					//echo $_SESSION["cusID"];
 					//echo "<br>";
+<<<<<<< HEAD
+=======
+					echo $_SESSION["cusID"];
+					echo "<br>";
+>>>>>>> origin/master
 				}
 				else
 				{
 					$_SESSION["empID"] = $id;
 					//echo $_SESSION["empID"];
 					//echo "<br>";
+<<<<<<< HEAD
+=======
+					echo $_SESSION["empID"];
+					echo "<br>";
+>>>>>>> origin/master
 				}
 				
 			}
@@ -116,10 +142,15 @@
 	
 	<article>
 	<h2>Log in</h2>
-	</article>
+
 		<h3><?php  echo $message; ?><br/></h3>
 		<?php 
 		if($_SESSION["privilege"] == '')
+<<<<<<< HEAD
+=======
+		<?php include 'forms/LoginForm.php'; 
+		if($_SESSION["privilege"] = '')
+>>>>>>> origin/master
 		{
 			echo 'You can login here!';
 			include 'forms/LoginForm.php';
@@ -129,6 +160,10 @@
 		}
 		
 		?>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/master
 	</article>
 
 

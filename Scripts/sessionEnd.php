@@ -10,5 +10,15 @@
 			session_unset(); 
 			session_destroy();
 			echo "You have successfully logged out, come back soon!";
+<<<<<<< HEAD
 	}
 ?> 
+=======
+			<?php include 'header.php';?>
+	}
+
+?> 
+
+?> 
+
+>>>>>>> origin/master

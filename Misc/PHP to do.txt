@@ -4,7 +4,7 @@ Index --- Dan
 Company Info --- Chris
 	Little bio about the company
 	
-Products --- Allan --- Functional(needs add to cart functionality and CSS)
+Products --- Allan, Dan --- Functional(needs add to cart functionality)
 	Display a sortable and searchable page of products
 	
 Employee pages --- Christos
@@ -37,16 +37,16 @@ Basket --- Igors
 Order display
 	Display a certain order
 	
-Order history
+Order history --- Allan ---
 	Display all orders for a client
 	
-Help page --- Aaron
+Help page ---
 	Open a help ticket page
 	
-Check stock page --- Allan
+Check stock page ---
 	Checks stock for a certain branch or warehouse?
 	
-Add supplier --- Allan
+supplier page --- Allan ---
 	Add a supplier to the list of suppliers	
 	
 Header --- Dan --- Functional
@@ -55,5 +55,5 @@ Header --- Dan --- Functional
 Footer --- Dan --- Functional
 	Basic navigation at the bottom of the page, maybe add a logo
 	
-Branch overview
+Branch overview --- Aaron
 	Ovewview of a branch, list of employees, who is manager, link to stock page etc

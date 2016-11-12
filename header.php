@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <header>
+=======
+<header style="  width: 100%; height: 10%; background-color: #80ffdd; text-align:center;  margin:auto;">
+
+>>>>>>> origin/master
 <div class="container"> 
  <div class="row">
  
