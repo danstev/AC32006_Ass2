@@ -37,7 +37,7 @@ Basket --- Igors
 Order display
 	Display a certain order
 	
-Order history
+Order history --- Allan ---
 	Display all orders for a client
 	
 Help page ---
