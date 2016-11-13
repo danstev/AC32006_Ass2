@@ -42,34 +42,16 @@
 				$_SESSION['cart'] [] = $cart;
 			}
 }		
-		//delete from cart	
-	 if(isset($_GET[])){
+		//delete	
+	   if(isset($_GET['index'])){
 		 $cart = unserialize(serialize($_SESSION['cart']));
-		 $index = -1;
-		 $cart = unserialize(serialize($_SESSION['cart']));
-		 for($i=0; $i<count($cart); $i++)
-			if($cart[$i]->id==$_GET[''id]){
-				$index =$i;
-				break;
-			}
+		 unset($cart[$_GET[''];
+		 $cart = array_values($cart);
+		 $_SESSION['cart'] = $cart;
+	}
 			
-			unset($cart[$_GET[''];
-			$cart = array_values($cart);
-			$_SESSION['cart'] = $cart;
-	 		}
 	 		
-function isExist($id){
-		 $index = -1;
-		 $cart = unserialize(serialize($_SESSION['cart']));
-		 for($i=0; $i<count($cart); $i++)
-			if($cart[$i]->id==$_GET[''id]){
-				$index =$i;
-				break;
-			}		
-		return $index;
-} 		
-	 		
-	 		
+	
 ?>
 
 
@@ -85,11 +67,13 @@ function isExist($id){
 	
 <?php	
 		$cart = unserialize(serialize($_SESSION['cart']));
+		$s=0;
+		index=0;
 		for($i=0; $i<count($cart); $i++){
 		$s += $cart[$i]->price * $cart[$i]->quantity;
 	?>
 	<tr>
-		<td><a href="shoppingcart.php?id=<?php echo $cart[$i]->id; ?>&action=delet" onclick="return confirm('Last chance to change your mind')">Delete</a></td>
+		<td><a href="shoppingcart.php?index=<?php echo $index; ?>" onclick="return confirm('Last chance to change your mind')">Delete</a></td>
 		<td><?php echo $cart [$i]->id; ?></td>
 		<td><?php echo $cart [$i]->name; ?></td>
 		<td><?php echo $cart [$i]->price; ?></td>
@@ -97,7 +81,11 @@ function isExist($id){
 		<td><?php echo $cart [$i]->price * $cart[$i]->quantity; ?> </td>
 	</tr>
 	
-	<?php } ?>	
+	<?php 
+		
+			$index++;
+		}
+		 ?>	
 	<tr>
 		<td colspan="5" align="right">Total </td>
 		<td align="left"><?php echo $s; ?> </td>
