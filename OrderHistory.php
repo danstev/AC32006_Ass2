@@ -33,60 +33,20 @@
 		$result = mysql_query($query);
 		if($result !== false)
 		{
+			echo "<br><div class=\"table-responsive\"><table border=\"5\" bordercolor=\"black\"
+			cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
+			collapse\" align=\"center\" class=\"table\">";
 			while($row = mysql_fetch_array($result)){
-				
-				$hyperlink;
-				echo "<td>";
-				echo "<a href=\"index.php\">" . $row["productType"]." </td><td>".$row["productName"]."</td><td>". "<img src = '$imagePath' >"."</td><td>".$row["description"]."</td><td>£". $row["cost"];
-				echo "</td></a></tr>";
+				echo "<tr><form action=\"OrderDetails.php\" method=\"get\">";
+				echo "<td>" . $row["orderDate"]."</td><td>" .  $row["address"] . "</td><td>£" .$row["totalCost"]."</td><td>" ."<input type=\"hidden\" name=\"orderid\" value=\"".$row["orderID"]."\">". "<button type=\"submit\" value=\"Submit\">View Details</button>";
+				echo "</td></form></tr></a>";
 			}
+			echo "</table></div>";
 		}
 		else
 		{
 			echo "Sorry No Products Found";
 		}
-		/*if ($_SERVER['REQUEST_METHOD'] === 'GET')
-		{
-			$orderID = $_GET["id"];
-			$cusQuery = "SELECT * from orders where orderID = '$orderID';";
-			$cusResult = mysql_query($cusQuery);
-			while($cusRow = mysql_fetch_array($cusResult))
-			{
-				if($cusRow["clientID"] === $_SESSION["cusID"])
-				{
-					//Display order
-				}
-				else
-				{
-					echo "You do not have permission to look at this.";
-				}
-			}
-		}
-		else
-		{
-			//Display form
-		}*/
-
-	}
-	else if($_SESSION["privilege"] === "employee")
-	{
-		if ($_SERVER['REQUEST_METHOD'] === 'GET')
-		{
-			$orderID = $_GET["id"];
-			$empQuery = "SELECT * from orders where orderID = '$orderID';";
-			$empResult = mysql_query($empQuery);
-			//Display order
-		}
-		else
-		{
-			//Display form
-		}
-
-	}
-
-
-
-
 	?>
 
 	</article>
