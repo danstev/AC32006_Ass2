@@ -20,7 +20,6 @@
 	<article>
 
 	<?php
-
 	if($_SESSION["privilege"] == '')
 	{
 		echo "<p> please login to view this page </p>";
@@ -35,10 +34,30 @@
 		{
 			echo "<br><div class=\"table-responsive\"><table border=\"5\" bordercolor=\"black\"
 			cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
-			collapse\" align=\"center\" class=\"table\">";
-			while($row = mysql_fetch_array($result)){
-				echo "<tr><form action=\"OrderDetails.php\" method=\"get\">";
-				echo "<td>" . $row["orderDate"]."</td><td>" .  $row["address"] . "</td><td>£" .$row["totalCost"]."</td><td>" ."<input type=\"hidden\" name=\"orderid\" value=\"".$row["orderID"]."\">". "<button type=\"submit\" value=\"Submit\">View Details</button>";
+			collapse\" align=\"center\" class=\"table\">
+			<tr><th>Date Placed</th><th>Delivery Address</th><th>Preview</th><th>Total Cost</th><th></th></tr>";
+			while($row = mysql_fetch_array($result))
+			{
+				$orderID = $row["orderID"];
+				$imageQuery = "SELECT imageLink FROM products WHERE productID IN(SELECT productID FROM items_ordered WHERE orderID = $orderID)";
+				$resultObject = mysql_query($imageQuery);
+				echo "<tr><form action=\"OrderDetails.php\" method=\"GET\">";
+				echo "<td>" . $row["orderDate"]."</td><td>" .  $row["address"] . "</td><td>";
+				$i=0;
+				while($imageLinks = mysql_fetch_array($resultObject))
+				{
+					if($i >2)
+					{
+						break;
+					}
+					else
+					{
+						$imagePath = $imageLinks["imageLink"];
+						echo "<img src = '$imagePath' class=\"img-responsive\" height=\"50px\" width=\"50px\" >";
+						$i++;
+					}			
+				}
+				echo "</td><td>£" .$row["totalCost"]."</td><td>" ."<input type=\"hidden\" name=\"orderId\" value=\"".$row["orderID"]."\">". "<button type=\"submit\" value=\"Submit\">View Details</button>";
 				echo "</td></form></tr></a>";
 			}
 			echo "</table></div>";
@@ -47,6 +66,7 @@
 		{
 			echo "Sorry No Products Found";
 		}
+	}
 	?>
 
 	</article>
