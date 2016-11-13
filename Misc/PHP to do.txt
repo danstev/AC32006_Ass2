@@ -4,7 +4,7 @@ Index --- Dan
 Company Info --- Chris
 	Little bio about the company
 	
-Products --- Allan, Dan, Igot
+Products --- Allan, Dan, Igors
 	Display a sortable and searchable page of products
 	
 Employee pages --- Christos
