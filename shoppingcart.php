@@ -12,20 +12,22 @@
 
  	include 'ConnectToDB.php';
 	include  'sessionStart.php';
-	
+	require 'Products.php';
 // need add some work, idea is using pointers with array
 	
-	$result = mysql_query($con,'select * from products where id='.$_GET['id']);
+	 
 	//  ELECT id,title FROM (SELECT id, title FROM t1 UNION ALL SELECT id,title FROM t2) tbl
 //	GROUP BY id, title
 //	HAVING count(*) = 1
 //	ORDER BY id;
-	$product = mysqli_fetch_object() // cart?
+	 
 	if(isset($_GET['id'])){
+		$result = mysql_query($con,'select * from products where id='.$_GET['id']);
+		$product = mysqli_fetch_object($result);
 		$item = new Item();
-		$item->id=$product->id;
-		$item->price=$product->price;
-		$item->quantity=1;
+		$item->id = $product->id;
+		$item->price = $product->price;
+		$item->quantity = 1;
 		// check product if exist
 		$index = -1;
 		$cart = unserialize(serialize($_SESSION['cart']));
@@ -35,11 +37,11 @@
 				$index =$i;
 				break;
 			}
-			if($index==--1)
-				$_SESSION['cart'] [] = $item;
+			if($index==-1)
+				$_SESSION['cart'][] = $item;
 			else{
-				$cart[index]->quantity++;
-				$_SESSION['cart'] [] = $cart;
+				$cart[$index]->quantity++;
+				$_SESSION['cart'] = $cart;
 			}
 }		
 		//delete	
