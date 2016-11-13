@@ -23,10 +23,24 @@
 	$product = mysqli_fetch_object() // how to pass this object?
 	if(isset($_GET['id'])){
 		$item = new Item();
-		$item->id = $product->id;
-		$item->price = $product->price;
-		$item->quantity = 1;
-		$_SESSION['cart'] [] = $item;
+		$item->id=$product->id;
+		$item->price=$product->price;
+		$item->quantity=1;
+		// check product if exist
+		$index = -1;
+		$cart = unserialize(serialize($_SESSION['cart']));
+		
+		for($i=0; $i<count($cart); $i++)
+			if($cart[$i]->id==$_GET[''id]){
+				$index =$i;
+				break;
+			}
+			if($index==--1)
+				$_SESSION['cart'] [] = $item;
+			else{
+				$cart[index]->quantity++;
+				$_SESSION['cart'] [] = $cart;
+			}
 		
 }
 ?>
@@ -54,6 +68,9 @@
 	</tr>
 	
 	<?php } ?>	
+	<tr>
+		<td>  </td>
+	 </tr>	
 		
 </table>
 	<br>
