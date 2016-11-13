@@ -20,7 +20,7 @@
 //	GROUP BY id, title
 //	HAVING count(*) = 1
 //	ORDER BY id;
-	$product = mysqli_fetch_object() // how to pass this object?
+	$product = mysqli_fetch_object() // cart?
 	if(isset($_GET['id'])){
 		$item = new Item();
 		$item->id=$product->id;
@@ -41,8 +41,35 @@
 				$cart[index]->quantity++;
 				$_SESSION['cart'] [] = $cart;
 			}
-		
-}
+}		
+		//delete from cart	
+	 if(isset($_GET[])){
+		 $cart = unserialize(serialize($_SESSION['cart']));
+		 $index = -1;
+		 $cart = unserialize(serialize($_SESSION['cart']));
+		 for($i=0; $i<count($cart); $i++)
+			if($cart[$i]->id==$_GET[''id]){
+				$index =$i;
+				break;
+			}
+			
+			unset($cart[$_GET[''];
+			$cart = array_values($cart);
+			$_SESSION['cart'] = $cart;
+	 		}
+	 		
+function isExist($id){
+		 $index = -1;
+		 $cart = unserialize(serialize($_SESSION['cart']));
+		 for($i=0; $i<count($cart); $i++)
+			if($cart[$i]->id==$_GET[''id]){
+				$index =$i;
+				break;
+			}		
+		return $index;
+} 		
+	 		
+	 		
 ?>
 
 
