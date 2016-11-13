@@ -48,6 +48,7 @@
 
 <table cellpadding="2" cellspacinf="2" border="1">
 	<tr>
+		<th>Option</th>
 		<th>Id</th>
 		<th>name</th>
 		<th>Price</th>
@@ -58,8 +59,10 @@
 <?php	
 		$cart = unserialize(serialize($_SESSION['cart']));
 		for($i=0; $i<count($cart); $i++){
+		$s += $cart[$i]->price * $cart[$i]->quantity;
 	?>
 	<tr>
+		<td><a href="shoppingcart.php?id=<?php echo $cart[$i]->id; ?>&action=delet" onclick="return confirm('Last chance to change your mind')">Delete</a></td>
 		<td><?php echo $cart [$i]->id; ?></td>
 		<td><?php echo $cart [$i]->name; ?></td>
 		<td><?php echo $cart [$i]->price; ?></td>
@@ -69,7 +72,8 @@
 	
 	<?php } ?>	
 	<tr>
-		<td>  </td>
+		<td colspan="5" align="right">Total </td>
+		<td align="left"><?php echo $s; ?> </td>
 	 </tr>	
 		
 </table>
