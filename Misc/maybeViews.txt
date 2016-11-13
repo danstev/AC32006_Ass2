@@ -1,7 +1,7 @@
 Admin
-	Employee Info
-	Branch Info
-	own address
+	Employee Info                     views can have their own access rights: Insert, Read, Update, Delete.      
+	Branch Info                       vertical view takes all rows, but not all columns
+	own address                       horizontal view takes all columns, but not all rows.
 	own login
 	Stock
 	Products
