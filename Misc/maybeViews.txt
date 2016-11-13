@@ -3,7 +3,7 @@ Admin
 	Branch Info                       vertical view takes all rows, but not all columns
 	own address                       horizontal view takes all columns, but not all rows.
 	own login
-	Stock
+	Stock                             
 	Products
 	Orders
 	Items_Ordered
