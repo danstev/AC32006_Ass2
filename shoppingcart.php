@@ -46,17 +46,17 @@
 		for($i=0; $i<count($cart); $i++){
 	?>
 	<tr>
-		<th><?php echo $cart [$i]->id; ?></th>
-		<th><?php echo $cart [$i]->name; ?></th>
-		<th><?php echo $cart [$i]->price; ?></th>
-		<th><?php echo $cart [$i]->quantity; ?></th>
-		<th><?php echo $cart [$i]->price * $cart[$i]->quantity; ?>
-	</th>
+		<td><?php echo $cart [$i]->id; ?></td>
+		<td><?php echo $cart [$i]->name; ?></td>
+		<td><?php echo $cart [$i]->price; ?></td>
+		<td><?php echo $cart [$i]->quantity; ?></td>
+		<td><?php echo $cart [$i]->price * $cart[$i]->quantity; ?> </td>
+	</tr>
 	
 	<?php } ?>	
 		
 </table>
 	<br>
-	<a href="Products.php"></a>
+	<a href="Products.php">Continue Shopping</a>
 
 
