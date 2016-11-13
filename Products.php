@@ -56,10 +56,10 @@
   			{
   				$resultArray[] = $row["productID"];
   			}
-  			
+			
   			$resultIDsArray = [];
   			$resultIDsArray = array_merge($resultIDsArray, $resultArray); //'1' specifies return array should have numeric index
-  			$keywords = strtok(" ");
+  			$keywords = strtok(" scripts/");
    		}
 
    		$queryCondition = implode(" OR ",$resultIDsArray);
@@ -109,19 +109,15 @@
 		echo "<br><div class=\"table-responsive\"><table border=\"5\" bordercolor=\"black\"
 		cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
 		collapse\" align=\"center\" class=\"table\">";
-		echo "<br><table border=\"5\" bordercolor=\"black\"
-		cellpadding=\"10\" width=\"100%\" style=\"border-collapse:
-		collapse\" align=\"center\"><tr>";
+		
 		if($result !== false)
 		{
 
 			while($row = mysql_fetch_array($result)){
 				$imagePath = $row["imageLink"];
 				echo "<tr><td>";
-				echo "<img src = '$imagePath' class=\"img-responsive\" >"."</td><td>". $row["productName"] ."</td><td>£". $row["cost"] ;
-				echo "<td>";
-				echo $row["productType"]." </td><td>".$row["productName"]."</td><td>". "<img src = '$imagePath' >"."</td><td>".$row["description"]."</td><td>£". $row["cost"];
-				echo "</td></tr>";
+				echo "<img src = '$imagePath' class=\"img-responsive\" >"."</td><td>". $row["productName"] ."</td><td>£". $row["cost"] . "</td>" ;
+				
 			}
 		}
 		else
@@ -129,7 +125,6 @@
 			echo "Sorry No Products Found";
 		}
  		echo "</table></div>";
- 		echo "</table>";
 	?>
 	
 	</article>
