@@ -4,56 +4,56 @@ Index --- Dan
 Company Info --- Chris
 	Little bio about the company
 	
-Products --- Allan, Dan --- Functional(needs add to cart functionality)
+Products --- Allan, Dan, Igot
 	Display a sortable and searchable page of products
 	
 Employee pages --- Christos
 	Can search employees if you are admin, otherwise employees can only see themselves
 	
-Account pages --- Aaron
+Account pages --- Dan
 	Client can see their details, and link to order history etc
 	
-Log in --- Allan --- Functional(needs a redirect and HTML clean up)
+Log in --- Allan 
 	Logs in, create session
 	
-Log out --- Dan, Allan --- Should Work
+Log out --- Dan, Allan 
 	Logs out, ends session
 	
-Register --- Igors, Dan --- Functional
+Register --- Igors, Dan 
 	Registers a user, do we need one for employees? or is that contrived?
 	
-payment details
+payment details --- Dan
 	Add or remove payment details
 	
-address
+address --- Dan
 	Add or remove addresses, maybe just a php thing which adds to database, and returns a id for other uses?
 	
-Checkout
+Checkout -- Igor
 	Gets items and makes an order, displays total cost
 	
 Basket --- Igors
 	Display list of items the client has selected, can also change amount of items they have ordered, link to checkout page
 	
-Order display
+Order display -- Allan
 	Display a certain order
 	
-Order history --- Allan ---
+Order history --- Allan 
 	Display all orders for a client
 	
-Help page ---
+Help page --- Dan
 	Open a help ticket page
 	
-Check stock page ---
+Check stock page --- ???
 	Checks stock for a certain branch or warehouse?
 	
-supplier page --- Allan ---
+supplier page --- Allan 
 	Add a supplier to the list of suppliers	
 	
-Header --- Dan --- Functional
+Header --- Dan 
 	At the top of every page, maybe an image, with scubadivers on it, a logo and some basic links?
 	
-Footer --- Dan --- Functional
+Footer --- Dan 
 	Basic navigation at the bottom of the page, maybe add a logo
 	
-Branch overview --- Aaron
+Branch overview --- Dan
 	Ovewview of a branch, list of employees, who is manager, link to stock page etc
