@@ -24,10 +24,10 @@
 	if(isset($_GET['id'])){
 		$result = mysql_query($con,'select * from products where id='.$_GET['id']);
 		$product = mysqli_fetch_object($result);
-		$item = new Item();
-		$item->id = $product->id;
-		$item->price = $product->price;
-		$item->quantity = 1;
+		$Products = new Products();
+		$Products->id = $product->id;
+		$Products->price = $product->price;
+		$Products->quantity = 1;
 		// check product if exist
 		$index = -1;
 		$cart = unserialize(serialize($_SESSION['cart']));
@@ -38,24 +38,20 @@
 				break;
 			}
 			if($index==-1)
-				$_SESSION['cart'][] = $item;
+				$_SESSION['cart'][] = $Products;
 			else{
 				$cart[$index]->quantity++;
 				$_SESSION['cart'] = $cart;
 			}
 }		
-		//delete	
+		//delete from cart
 	   if(isset($_GET['index'])){
 		 $cart = unserialize(serialize($_SESSION['cart']));
-		 unset($cart[$_GET[''];
+		 unset($cart[$_GET['index']];
 		 $cart = array_values($cart);
 		 $_SESSION['cart'] = $cart;
-	}
-			
-	 		
-	
+}
 ?>
-
 
 <table cellpadding="2" cellspacinf="2" border="1">
 	<tr>
