@@ -12,16 +12,34 @@
 <html>
 <title> </title>
 <body>
-	<h1>idk : Scubadiver bullshit what did we call us?</h1>
-
-	<article>
-	<h2>what</h2>
-	<p>kjhgkhjg</p>
-	</article>
-
-
-	<?php include 'footer.php';?>
-
+	<?php include scripts/sessionStart; ?>
+	<?php include scripts/connectToDb; ?>
+	<?php include header.php; ?>
+	
+	<?php
+	include scripts/basketFunc;
+	if( isset($_POST["id"]) )
+	{
+		if( isset($POST["add"]) )
+		{
+			addToBasket($_POST["prod"], $_POST["quantity"]);
+			header("Location: Products.php");
+			exit();
+		}
+		else if ( isset($_POST["remove"]) )
+			removeFromBasket($_POST["prod"]);
+			header("Location: Products.php");
+			exit();
+		}
+	else
+	{
+		displayBasket();
+	}
+		
+		
+	?>
+	
+	<?php include footer.php; ?>
 
 </body>
 
