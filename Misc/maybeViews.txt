@@ -1,15 +1,15 @@
 Admin
-	Employee Info                     views can have their own access rights: Insert, Read, Update, Delete.      
-	Branch Info                       vertical view takes all rows, but not all columns
-	own address                       horizontal view takes all columns, but not all rows.
-	own login
-	Stock                             
-	Products
-	Orders
-	Items_Ordered
-	Warehouses
-	Supplier
-	Head_office
+	Employee Info all - 1 view               	    views can have their own access rights: Insert, Read, Update, Delete.      
+	Branch Info     - 2 view                 		 vertical view takes all rows, but not all columns
+	own address   - 3                   		  horizontal view takes all columns, but not all rows.
+	own login     - 3
+	Stock        - 4                      
+	Products     - 5
+	Orders       -6 
+	Items_Ordered - 6
+	Warehouses     -2 view
+	Supplier   -7 
+	Head_office	- 2 view 
 	
 BranchManager
 	Own employee info
