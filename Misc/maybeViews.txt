@@ -6,8 +6,8 @@ Admin
 	clients data all -3 view (done)
 	Stock        - 4   view (done)                   
 	Products     - 4   view ( done)
-	Orders       -5 
-	Items_Ordered - 5
+	Orders       -5    view (done)
+	Items_Ordered - 5  view ( done)
 	Warehouses     -2 view (done)
 	Supplier   -6 
 	Head_office	- 2 view (done)
