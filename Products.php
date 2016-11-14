@@ -26,7 +26,6 @@
 
 	 
 	<?php //Builds Query based on user refinements
-	echo "Refine By: ".$_POST["Product_Type"]." Search for: ". $_POST["search"];
 		if(isset($_POST["submit"]) && $_POST["Product_Type"] !== "All" && $_POST["search"] === "")
 		{
 			echo "Line 32";
