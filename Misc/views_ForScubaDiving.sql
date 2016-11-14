@@ -57,7 +57,12 @@ select  items_ordered.itemID, items_ordered.quantity,items_ordered.itemCost,
 name of the view : checkSupplier
 
 create view checkSupplier as select supplierID, nameOfSupplier, email, phoneNumber from supplier;
--------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
+name of the view :adminDetails 
+create view adminDetails as select address.postcode, address.street, address.housenumber, address.city, address.country,
+logins.loginID, logins.username, logins.passwordsfrom address left join logins on address.addressID = logins.loginIDwhere username = 'admin';
+
+
 
 
 
