@@ -4,12 +4,12 @@ Admin
 	own address   - ?                   		  horizontal view takes all columns, but not all rows.
 	own login     - ?
 	clients data all -3 view (done)
-	Stock        - 4                      
-	Products     - 5
-	Orders       -6 
-	Items_Ordered - 6
+	Stock        - 4   view (done)                   
+	Products     - 4   view ( done)
+	Orders       -5 
+	Items_Ordered - 5
 	Warehouses     -2 view (done)
-	Supplier   -7 
+	Supplier   -6 
 	Head_office	- 2 view (done)
 	
 BranchManager
