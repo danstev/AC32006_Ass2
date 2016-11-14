@@ -26,8 +26,10 @@
 
 	 
 	<?php //Builds Query based on user refinements
-		if(isset($_POST["submit"]) && $_POST["Product_Type"] !== "All")
+	echo "Refine By: ".$_POST["Product_Type"]." Search for: ". $_POST["search"];
+		if(isset($_POST["submit"]) && $_POST["Product_Type"] !== "All" && $_POST["search"] === "")
 		{
+			echo "Line 32";
 			$prodType = $_POST["Product_Type"];
 			$query = "SELECT * FROM products WHERE productType = '$prodType';";
 		}
@@ -39,31 +41,31 @@
 	?>
 
 	<?php //Builds Query based on user search
-	if(isset($_POST["submit"]) && $_POST["search"] !== "")
+	if(isset($_POST["submit"]) && $_POST["search"] !== "" && $_POST["Product_Type"] === "All")
 	{
 		$search = $_POST["search"];
 		$searchLowCase = strtolower($search);
 		$searchStripdPunc = preg_replace('/[^\w]+/', ' ', $searchLowCase);
 		$keywords = strtok($searchStripdPunc, " ");
-		
+		$resultIDsArray = [];
 		while ($keywords !== false)
    		{
    			$query = "SELECT productID FROM products WHERE productName LIKE '%$keywords%' OR productType LIKE '%$keywords%' OR description LIKE '%$keywords%';";
   			$result = mysql_query($query);
-  			
+  			$test = mysql_fetch_array($result);
   			$resultArray = [];
   			while($row = mysql_fetch_array($result))
   			{
   				$resultArray[] = $row["productID"];
   			}
-			
-  			$resultIDsArray = [];
-  			$resultIDsArray = array_merge($resultIDsArray, $resultArray); //'1' specifies return array should have numeric index
-  			$keywords = strtok(" scripts/");
+  			
+  			$resultIDsArray = array_merge($resultIDsArray, $resultArray);
+  			$keywords = strtok(" ");
    		}
 
-   		$queryCondition = implode(" OR ",$resultIDsArray);
-   		$query = "SELECT * from products WHERE productID = $queryCondition;";
+   		$queryCondition = implode(",",$resultIDsArray);
+   		echo "</br>". $queryCondition;
+   		$query = "SELECT * from products WHERE productID IN ($queryCondition);";
    		$result = mysql_query($query);
    	}	
 	?>
@@ -71,12 +73,13 @@
 	<?php
 		if(isset($_POST["submit"]) && $_POST["search"] !== "" && $_POST["Product_Type"] !== "All")
 		{
+			echo "Line 77";
 			$prodType = $_POST["Product_Type"];
 			$search = $_POST["search"];
 			$searchLowCase = strtolower($search);
 			$searchStripdPunc = preg_replace('/[^\w]+/', ' ', $searchLowCase);
 			$keywords = strtok($searchStripdPunc, " ");
-		
+			$resultIDsArray = [];
 		while ($keywords !== false)
    		{
    			$query = "SELECT productID FROM products WHERE productType = '$prodType' AND productName LIKE '%$keywords%' OR productType LIKE '%$keywords%' OR description LIKE '%$keywords%';";
@@ -88,13 +91,13 @@
   				$resultArray[] = $row["productID"];
   			}
   			
-  			$resultIDsArray = [];
-  			$resultIDsArray = array_merge($resultIDsArray, $resultArray); //'1' specifies return array should have numeric index
+  			
+  			$resultIDsArray = array_merge($resultIDsArray, $resultArray);
   			$keywords = strtok(" ");
    		}
 
    		$queryCondition = implode(" OR ",$resultIDsArray);
-   		$query = "SELECT * from products WHERE productID = $queryCondition;";
+   		$query = "SELECT * from products WHERE productID IN ($queryCondition);";
    		$result = mysql_query($query);
 
 
