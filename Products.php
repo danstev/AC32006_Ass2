@@ -114,11 +114,10 @@
 		
 		if($result !== false)
 		{
-
 			while($row = mysql_fetch_array($result)){
 				$imagePath = $row["imageLink"];
-				echo "<tr><td>";
-				echo "<img src = '$imagePath' class=\"img-responsive\" >"."</td><td>". $row["productName"] ."</td><td>£". $row["cost"] . "</td>" ;
+				echo "<tr><form action=\"Product.php\" method=\"GET\"><td>";
+				echo "<img src = '$imagePath' class=\"img-responsive\" >"."</td><td>". $row["productName"] ."</td><td>£". $row["cost"] . "</td><td><input type=\"hidden\" name=\"productID\" value=\"".$row["productID"]."\">". "<button type=\"submit\" value=\"Submit\">View Details</button></form></tr>";
 				
 			}
 		}
