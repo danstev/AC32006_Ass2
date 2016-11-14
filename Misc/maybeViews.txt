@@ -9,7 +9,7 @@ Admin
 	Orders       -5    view (done)
 	Items_Ordered - 5  view ( done)
 	Warehouses     -2 view (done)
-	Supplier   -6 
+	Supplier   -6     view (done)
 	Head_office	- 2 view (done)
 	
 BranchManager
