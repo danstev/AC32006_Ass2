@@ -10,13 +10,60 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title> </title>
+<title>Stock : Scubadiver </title>
 <body>
-	<h1>idk : Scubadiver bullshit what did we call us?</h1>
+	<h1>Stock : Scubadiver bullshit what did we call us?</h1>
 
 	<article>
-	<h2>what</h2>
-	<p>kjhgkhjg</p>
+	<?php
+		
+		if(session_id() == '' || !isset($_SESSION['privilege']))
+		{
+			echo "You do not have permission to see this page. Please log in.";
+		}
+		else if($_SESSION["privilege"] === "employee" || $_SESSION["privilege"] === "manager"  || $_SESSION["privilege"] === "admin" )
+		{
+			include 'scripts/ConnectToDB.php';
+			//IF ITS A GET
+			if (isset($_GET["id"]))
+			{
+				//GET ID
+				$bID = $_GET["bID"];
+				//QUERY
+				$query = "SELECT * from stock where branchID = '$bID';";
+				//DO QUERY
+				$result = mysql_query($query);
+				//USE YOUR FUNCTION
+				printTable($result);
+			}
+			else
+			{
+				//OWN EMPLOYEES ID
+				$empID = $_SESSION["empID"];
+				//QUERY
+				$empQuery = "SELECT branchID FROM employee where employeeID = '$empID';";
+				//RESULT
+				$empResult = mysql_query($empQuery);
+				//INIT
+				$bID;
+				while($row = mysql_fetch_assoc($result))
+				{
+					//SEt bID
+					$bID = $row["branchID"];
+				}
+				//NEW QUERY
+				$query = "SELECT * from stock where branchID = '$bID';";
+				//RUN IT
+				$result = mysql_query($query);
+				//YOUR FUNCTION
+				printTable($result);
+			}
+			include 'scripts/closeConnection.php';
+		}
+		
+		?>
+		
+
 	</article>
 
 
