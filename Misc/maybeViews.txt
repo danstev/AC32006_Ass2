@@ -1,8 +1,9 @@
 Admin
 	Employee Info  - 1 view  (done)             	    views can have their own access rights: Insert, Read, Update, Delete.      
 	Branch Info     - 2 view  (done)               		 vertical view takes all rows, but not all columns
-	own address   - 3                   		  horizontal view takes all columns, but not all rows.
-	own login     - 3
+	own address   - ?                   		  horizontal view takes all columns, but not all rows.
+	own login     - ?
+	clients data all -3 view 
 	Stock        - 4                      
 	Products     - 5
 	Orders       -6 
