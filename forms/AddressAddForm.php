@@ -1,19 +1,20 @@
+<form class="form-horizontal">
+<fieldset>
+<legend>Change Account Details</legend>
 <form action="index.php"  method = "post" class="form-horizontal">
 	<div class="form-group">
 	  <label class="col-md-4 control-label" for="houseNumber">House Number</label>  
 	  <div class="col-md-4">
-	  <input id="houseNumber" name="houseNumber" type="text" placeholder="<?php echo $address[3]?>" class="form-control input-md">
-		
+	  	<input id="houseNumber" name="houseNumber" type="text" placeholder="<?php echo $address[3]?>" class="form-control input-md">	
 	  </div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
 	  <label class="col-md-4 control-label" for="streetName">Street Name</label>  
-	  <div class="col-md-4">
-	  <input id="streetName" name="streetName" type="text" placeholder="<?php echo $address[2]?>" class="form-control input-md">
-		
-	  </div>
+	  	<div class="col-md-4">
+	  		<input id="streetName" name="streetName" type="text" placeholder="<?php echo $address[2]?>" class="form-control input-md">	
+		</div>
 	</div>
 
 	<!-- Text input-->
@@ -51,4 +52,6 @@
 	  </div>
 	</div>
 
-	</form>
+</form>
+</fieldset>
+</form>
