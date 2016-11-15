@@ -78,8 +78,21 @@ create view adminDetailsFull as
 	left join logins on address.addressID = logins.loginID
 	 where username = 'admin';
 ======================================================================================================================================================
+<<BranchManager>> VIEWS
+
+name of the view : Branch_addr_View
 
 
+CREATE VIEW Branch_addr_View AS
+SELECT 
+branches.branchID as 'Branch ID', branches.Branch_name as 'Name Of The Branch', branches.fl_staff as 'Branch Staff',
+branches.managers as 'Managers' , address.addressID, address.postcode, address.street, address.housenumber, address.city,
+address.country
+FROM branches 
+left join address on branches.branchID = address.addressID
+ order by branchID;
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
