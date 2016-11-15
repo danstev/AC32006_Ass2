@@ -12,34 +12,42 @@
 <html>
 <title> </title>
 <body>
-	<?php include scripts/sessionStart; ?>
-	<?php include scripts/connectToDb; ?>
-	<?php include header.php; ?>
+	<?php include 'scripts/sessionStart.php'; ?>
+	<?php include 'scripts/connectToDb.php'; ?>
+	<?php include 'header.php'; ?>
 	
 	<?php
-	include scripts/basketFunc;
-	if( isset($_POST["id"]) )
-	{
-		if( isset($POST["add"]) )
+	
+	
+	//echo $_POST["prod"];
+	//echo $_POST["quantity"];
+	//echo $_POST["submit"];
+	if( isset( $_POST["submit"]))
+	{		
+		if( $_POST["submit"] === "Add" )
 		{
+			include 'functions/basketFunc.php';
 			addToBasket($_POST["prod"], $_POST["quantity"]);
-			header("Location: Products.php");
-			exit();
+			displayBasket();
 		}
-		else if ( isset($_POST["remove"]) )
-			removeFromBasket($_POST["prod"]);
-			header("Location: Products.php");
-			exit();
+		else if ( $_POST["submit"] === "Remove" )
+		{
+			include 'functions/basketFunc.php';
+			echo $_POST["remov"];
+			removeFromBasket($_POST["remov"]);
+			displayBasket();
 		}
+	}
 	else
 	{
+		include 'functions/basketFunc.php';
 		displayBasket();
 	}
-		
+	
 		
 	?>
 	
-	<?php include footer.php; ?>
+	<?php include 'footer.php'; ?>
 
 </body>
 
