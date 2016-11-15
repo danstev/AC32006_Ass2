@@ -60,8 +60,24 @@ create view checkSupplier as select supplierID, nameOfSupplier, email, phoneNumb
 -----------------------------------------------------------------------------------------------------------------------------------------------
 name of the view :adminDetails 
 create view adminDetails as select address.postcode, address.street, address.housenumber, address.city, address.country,
-logins.loginID, logins.username, logins.passwordsfrom address left join logins on address.addressID = logins.loginIDwhere username = 'admin';
+logins.loginID, logins.username, logins.passwordsfrom address 
+left join logins on address.addressID = logins.loginID 
+where username = 'admin';
 
+---------------------------------------------------------------------------------------------------------------------------------------------
+name of the view :adminDetailsFull   (proper name displaying )
+
+
+create view adminDetailsFull as
+ 	select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
+     employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth',
+    address.postcode, address.street, address.housenumber as 'House number', address.city as 'City' , address.country as 'Country',
+ 	 logins.loginID as 'My ID', logins.username, logins.passwords
+ 	from employee 
+ 	left join address on employee.employeeID = address.addressID
+	left join logins on address.addressID = logins.loginID
+	 where username = 'admin';
+======================================================================================================================================================
 
 
 
