@@ -59,11 +59,11 @@ Accountant
 	Own login
 	
 Client
-	Own address
-	Own info from clients
-	Own help tickets
-	Own login
-	Own orders
-	Own payment_details
-	own items_ordered
+	Own address            1
+	Own info from clients  1
+	Own help tickets       
+	Own login              1
+	Own orders             2
+	Own payment_details    2
+	own items_ordered      2
 	
