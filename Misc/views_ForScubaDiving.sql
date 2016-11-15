@@ -10,7 +10,7 @@ CREATE VIEW employeeInfo AS
     FROM
         employee d, address c
 		where 
-        d.employeeID = c.addressID;
+        d.addressID = c.addressID;
 		
 -------------------------------------------------------------------------------------------------------------------------------------------------
 name of the view: br_ware_office
@@ -33,8 +33,8 @@ clients.clientID, clients.Fname, clients.Lname, clients.phonenumber, clients.ema
 logins.loginID,logins.username, logins.passwords,
 address.postcode,address.street, address.housenumber, address.city, address.country
 FROM clients 
-left join logins on clients.clientID = logins.loginID
-left join address on clients.clientID = address.addressID
+left join logins on clients.clientID = logins.clientID
+left join address on clients.addressID = address.addressID
 order by clientID;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,14 +44,16 @@ create view stock_Product_View as
 select stocks.stockID, stocks.quantity,products.productID,products.productName, 
 products.cost, products.productType,products.imageLink,products.description
 from stocks
-left join products on stocks.stockID = products.productID
+left join products on stocks.productID = products.productID
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 name of the view : items_ordered_orders
+
+create view items_ordered_orders as
 select  items_ordered.itemID, items_ordered.quantity,items_ordered.itemCost,
  orders.orderID, orders.totalCost,orders.orderDate,orders.address,orders.restock
  from items_ordered
- left join orders on items_ordered.itemID = orders.orderID;
+ left join orders on items_ordered.orderID = orders.orderID;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 name of the view : checkSupplier
@@ -68,14 +70,13 @@ where username = 'admin';
 name of the view :adminDetailsFull   (proper name displaying )
 
 
-create view adminDetailsFull as
- 	select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
+select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
      employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth',
     address.postcode, address.street, address.housenumber as 'House number', address.city as 'City' , address.country as 'Country',
  	 logins.loginID as 'My ID', logins.username, logins.passwords
  	from employee 
- 	left join address on employee.employeeID = address.addressID
-	left join logins on address.addressID = logins.loginID
+ 	left join address on employee.addressID = address.addressID
+	left join logins on employee.employeeID = logins.employeeID
 	 where username = 'admin';
 ======================================================================================================================================================
 <<BranchManager>> VIEWS
@@ -89,12 +90,19 @@ branches.branchID as 'Branch ID', branches.Branch_name as 'Name Of The Branch', 
 branches.managers as 'Managers' , address.addressID, address.postcode, address.street, address.housenumber, address.city,
 address.country
 FROM branches 
-left join address on branches.branchID = address.addressID
+left join address on branches.addressID = address.addressID
  order by branchID;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
+name of the view : emp_login_branch
 
-
+	CREATE VIEW emp_login_branch AS
+  
+	select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
+    employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth',
+	branches.branchID
+	from employee 
+ 	left join branches on employee.branchID = branches.branchID;
 
 
 
