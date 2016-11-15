@@ -17,7 +17,7 @@
 <?php include 'header.php';?>
 <?php include 'databaseoutput.php';?>
 <?php include 'Scripts/ConnectToDB.php';?>
-
+<?php if($_SESSION["privilege"] === "Customer Support" or $_SESSION["privilege"] === "Administrator"){?>
 
 
 	<h1>Customer Support Of DiveMasters</h1>
@@ -178,7 +178,9 @@ printTable($result);
 			
 		
 		
-	?>
+}else{
+	echo "You do not have permission to view this page.";
+}	?>
 
 
 
