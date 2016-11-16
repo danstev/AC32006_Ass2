@@ -56,7 +56,7 @@ printTable($result);
 
 
 
-$query = "select sum(outcome)from financial_transactions where clientID IS NULL and orderID IS NOT NULL;";
+$query = "select * from sum_outcome";
 $result = mysql_query($query);
 
 while($row = mysql_fetch_assoc($result)){

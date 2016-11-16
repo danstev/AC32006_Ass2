@@ -168,7 +168,9 @@ SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from 
 SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM warehouse, orders ,branches 
  where warehouse.warehouseID = orders.warehouseID and orders.clientID IS NULL and 
  warehouse.branchID=branches.branchID ORDER BY warehouseID ASC;
-
+--------------------------------------------------------------
+create view sum_outcome as
+select sum(outcome)from financial_transactions where clientID IS NULL and orderID IS NOT NULL;
 
 
 
