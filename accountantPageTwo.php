@@ -84,8 +84,7 @@ echo "<br />\n";
 echo "<br />\n";
 echo "<h2>Highest Earning Employees And Their Branches</h2>";
 
-$query = "select branches.BranchID, branches.Branch_Name, employee.Position ,  employee.Fname, employee.Lname , employee.salary 
-from branches,  employee where branches.branchID = employee.branchID and employee.salary > (select avg(employee.salary) from employee);";
+$query = "select * from avg_salary_emp";
 $result = mysql_query($query);
 printTable($result);
 

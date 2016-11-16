@@ -171,6 +171,12 @@ SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM w
 --------------------------------------------------------------
 create view sum_outcome as
 select sum(outcome)from financial_transactions where clientID IS NULL and orderID IS NOT NULL;
+--------------------------------------------------------------
+create view avg_salary_emp as
+select branches.BranchID, branches.Branch_Name, employee.Position ,  employee.Fname, employee.Lname , employee.salary 
+from branches,  employee where
+ branches.branchID = employee.branchID and employee.salary > (select avg(employee.salary) from employee);
+ --------------------------------------------------------------------
 
 
 
