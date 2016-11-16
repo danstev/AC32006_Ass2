@@ -13,194 +13,165 @@
 <html>
 <title> </title>
 <body>
+
+
 <?php 
 	include 'scripts/sessionStart.php';
+	include 'scripts/ConnectToDB.php';
+	if(isset($_POST["AccDetSubmit1"]))	//Customer is editing their details
+	{
+		echo "It was a customer";
+		$customerID = $_SESSION["cusID"];
+		$phoneNumber =mysql_real_escape_string(trim($_POST['phoneNumber']));
+		$phoneNumber = strip_tags($phoneNumber);
+		$phoneNumber = htmlspecialchars($phoneNumber);
+		$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
+		$passwords =mysql_real_escape_string(trim($_POST['password']));
+  		$passwords = strip_tags($passwords);
+ 		$passwords = htmlspecialchars($passwords);
+ 		$pwdencrypt= md5($passwords);
+		$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+
+		mysql_query("UPDATE clients SET email = '$email', phonenumber = '$phoneNumber' WHERE clientID = '$customerID';");
+		mysql_query("UPDATE logins SET passwords = '$pwdencrypt' WHERE clientID='$customerID';");
+	}
+	else if(isset($_POST["AccDetSubmit"]))	//Employee is editing their details
+	{
+		echo "Updating Employee Details and Password";
+		$employeeID = $_SESSION["empID"];
+		$phoneNumber =mysql_real_escape_string(trim($_POST['phoneNumber']));
+		$phoneNumber = strip_tags($phoneNumber);
+		$phoneNumber = htmlspecialchars($phoneNumber);
+		$phoneNumber = preg_replace("([^0-9])", "", $phoneNumber);
+		$passwords =mysql_real_escape_string(trim($_POST['password']));
+  		$passwords = strip_tags($passwords);
+ 		$passwords = htmlspecialchars($passwords);
+ 		$pwdencrypt= md5($passwords);
+		$email =mysql_real_escape_string (filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+
+		$test1 = mysql_query("UPDATE employee SET email = '$email', phonenumber = '$phoneNumber' WHERE employeeID = '$employeeID';");
+		$test2 = mysql_query("UPDATE logins SET passwords = '$pwdencrypt' WHERE employeeID = '$employeeID';");
+	}
+	else if(isset($_POST["AddressSubmit1"])) //Customer is editing their address 
+	{
+		echo "Changing Customer Address";
+		$houseNo =mysql_real_escape_string(trim($_POST['houseNumber']));
+		$street =mysql_real_escape_string(trim($_POST['streetName']));
+		$city =mysql_real_escape_string(trim($_POST['city']));
+		$country =mysql_real_escape_string(trim($_POST['country']));
+		$postcode =mysql_real_escape_string(trim($_POST['postcode']));
+		
+		$customerID = $_SESSION["cusID"];
+		$query = "SELECT addressID FROM clients WHERE clientID = $customerID;";
+		$result = mysql_query($query);
+		$resultArray = mysql_fetch_assoc($result);
+		$addressID = $resultArray["addressID"];
+
+		mysql_query("UPDATE address SET housenumber = '$houseNo', street = '$street', city = '$city', country = '$country', postcode = '$postcode' WHERE addressID = '$addressID' ;");
+	}
+	else if(isset($_POST["AddressSubmit"])) //Employee is editing their address 
+	{
+		echo "Changing employee Address";
+		$houseNo =mysql_real_escape_string(trim($_POST['houseNumber']));
+		$street =mysql_real_escape_string(trim($_POST['streetName']));
+		$city =mysql_real_escape_string(trim($_POST['city']));
+		$country =mysql_real_escape_string(trim($_POST['country']));
+		$postcode =mysql_real_escape_string(trim($_POST['postcode']));
+		
+		$employeeID = $_SESSION["empID"];
+		$query = "SELECT addressID FROM employee WHERE employeeID = $employeeID;";
+		$result = mysql_query($query);
+		$resultArray = mysql_fetch_assoc($result);
+		$addressID = $resultArray["addressID"];
+
+		mysql_query("UPDATE address SET housenumber = '$houseNo', street = '$street', city = '$city', country = '$country', postcode = '$postcode' WHERE addressID = '$addressID' ;");
+	}
+	else if(isset($_POST["PaymentSubmit"])) //Customer is editing their payment details
+	{
+		$accName = mysql_real_escape_string(trim($_POST['nameOnCard']));
+  		$accName = strip_tags($accName);
+ 		$accName = htmlspecialchars($accName);
+ 		$cardNumber =mysql_real_escape_string(trim($_POST['cardNumber']));
+ 		$expDate =mysql_real_escape_string(trim($_POST['expirationdate']));
+ 		$houseNo =mysql_real_escape_string(trim($_POST['houseNumber']));
+		$street =mysql_real_escape_string(trim($_POST['streetName']));
+		$city =mysql_real_escape_string(trim($_POST['city']));
+		$country =mysql_real_escape_string(trim($_POST['country']));
+		$postcode =mysql_real_escape_string(trim($_POST['postcode']));
+
+		$clientID = $_SESSION["cusID"];
+
+		$test = mysql_query("INSERT INTO address (housenumber,street,city,country,postcode) VALUES ('$houseNo','$street','$city','$country','$postcode');");
+		$addressIDObject = mysql_query("SELECT MAX(addressID) FROM address;");
+		$addressIDArray = mysql_fetch_row($addressIDObject);
+		$addressID = $addressIDArray[0];
+		echo "<br> ADDRESS ID : " . $addressID;
+		$test2 = mysql_query("DELETE FROM payments_details WHERE clientID = $clientID");
+		$test3 = mysql_query("INSERT INTO payments_details (accName,cardNumber,expDate,clientID,addressID) VALUES ('$accName', '$cardNumber', '$expDate', '$clientID', '$addressID');");
+	}	
+	include 'scripts/CloseConnection.php';
+?>
+
+
+<?php 
 	include 'header.php';
 	include 'functions/PrintDetails.php';
 ?>
 
-	<h1>Account : Scubadiver bullshit what did we call us?</h1>
+	<h1>Account</h1>
 	<article>
-	<h2>Account details for :
-	<?php
+<?php
 	if(isset($_SESSION["name"]))
 	{
 		echo "Account details for : ";
 		echo $_SESSION["name"];
 	}
-	else
-	{
-		echo "Account details";
-	}
-	?>
-	</h2>
+?>
 	
-	<?php
-		if(session_id() == '' || !isset($_SESSION['privilege']))
-		{
-			echo "You do not have permission to see this page. Please log in.";
-		}
-		else if($_SESSION["privilege"] === "customer")
-		{
-			include 'scripts/ConnectToDB.php';
-			$clientID = $_SESSION["cusID"];
-			$query = "SELECT * FROM clients WHERE clientID = $clientID;";
-			$clientDetails = mysql_query($query);
-			$addressID = printDetails($clientDetails, $clientID);
-			
- 			$query = "SELECT * FROM address WHERE addressID = $addressID;";
- 			$addressDetails = mysql_query($query);
- 			printAddressDetails($addressDetails, $clientID);
-
- 			$query = "SELECT * FROM payments_details WHERE clientID = $clientID;";
- 			$paymentDetails = mysql_query($query);
- 			printPaymentDetails($paymentDetails, $clientID);
- 			
-			include 'scripts/CloseConnection.php';
-		}
-		else if($_SESSION["privilege"] === "employee")
-		{
-			include 'scripts/ConnectToDB.php';
-			$empID = $_SESSION["empID"];
-			$query = "SELECT addressID, Fname, Lname, email, phonenumber, dateofbirth FROM employee WHERE employeeID = $empID;";
-			$personalDetails = mysql_query($query);
-			$addressID = printDetails($personalDetails, $empID);
-
-			$query = "SELECT branchID, position, salary FROM employee WHERE employeeID = $empID;";
-			$employeeDetails = mysql_query($query);
-			printEmployeeDetails($employeeDetails);
-
- 			$query = "SELECT * FROM address WHERE addressID = $addressID;";
- 			$addressDetails = mysql_query($query);
- 			printAddressDetails($addressDetails, $empID);
-			
-			include 'scripts/CloseConnection.php';
-		}
-		else if($_SESSION["privilege"] === "admin")
-		{
-			include 'scripts/ConnectToDB.php';
-			if (isset($_GET["id"]))
-			{
-				$clientID = $_GET["clientID"]; //$_SESSION["cusID"];
-				$clientsres = mysql_query("SELECT * from clients WHERE clientID = '$clientID'");
-				$clients = MySQL_fetch_row($clientsres);
-				$addressres = mysql_query("SELECT * from address WHERE addressID = '$clients[6]'");
-				$address = MySQL_fetch_row($addressres);
-				$paymentres = mysql_query("SELECT cardDetails from payments_details WHERE clientID = '$clientID'");
-				$payment = mySQL_fetch_row($paymentres);
-				$securepayment = substr($payment[0], -4);
-				$usernameres = mysql_query("SELECT username from logins WHERE clientID = '$clientID'");
-				$username = mySQL_fetch_row($usernameres);
-				
-				echo "Account Name:";
-				echo $username[0];
-				echo "<br>";
-				echo "Email Address:";
-				echo $clients[4];
-				echo '<a href="">Change email address</a>';
-				echo "<br>";
-				echo "Password:";
-				echo "********";
-				echo '<a href="">Change password</a>';
-				echo "<br>";
-				echo "Phone Number:";
-				echo $clients[3];
-				echo '<a href="">Change phone number</a>';
-				echo "<br>";
-				echo "Saved Address:";
-				echo $address[3];
-				echo $address[2];
-				echo $address[4];
-				echo $address[5];
-				echo $address[1];
-				echo '<a href="">Change address</a>';
-				echo "<br>";
-				echo "Saved Payment Details:";
-				echo "Card ending in: ";
-				echo $securepayment;
-				echo '<a href="">Change payment details</a>';
-				echo "<br>";
-				include 'scripts/CloseConnection.php';
-
-			}
-			else
-			{
-				$id = $_SESSION["empID"];
-				$query = "SELECT * FROM employees WHERE employeeID = '$id';";
-				$employee = mysql_query($query2); 
-				while($row = mysql_fetch_assoc($employee))
-				{
-			
-					$FirstName= $row["Fname"];
-					$LastName= $row["Lname"];
-					$BranchID= $row["branchID"]; //Maybe link branch here?
-					$position= $row["position"];
-					$Salary= $row["salary"];
-					$PhoneNumber= $row["phonenumber"];
-					$Email= $row["email"];
-					$DateOfBirth= $row["dateofbirth"];
-					$AddressID= $row["addressID"];
-			 
-				}
-				
-				$query3 ="SELECT*FROM address WHERE addressID ='$AddressID' ;";
-				$Addressemployee = mysql_query($query3);
-				while($row2 = mysql_fetch_assoc($Addressemployee))
-				{
-					$postcode= $row2["postcode"];
-					$street= $row2["street"];
-					$house= $row2["house"];
-					$city= $row2["city"];
-					$country= $row2["country"];   
-				}
-				$fullAddress =$house.' '.$street.' '.$city.' '.$postcode.' '.$country;
-
-				echo "Position:";
-				echo $position;
-				echo "<br>";
-				echo "First Name:";
-				echo $FirstName;
-				echo "<br>";
-				echo "Last Name:";
-				echo $LastName;
-				echo "<br>";
-				echo "Date of Birth:";
-				echo $DateOfBirth;
-				echo "<br>";
-				echo "Phone number:";
-				echo $PhoneNumber;
-				echo "<br>";
-				echo '<a href="">Change phone number</a>';
-				echo "Email:";
-				echo $Email;
-				echo "<br>";
-				echo '<a href="">Change email address</a>';
-				echo "Address:";
-				echo $fullAddress;
-				echo "<br>";
-				echo '<a href="">Change address</a>';
-				echo "Salary:";
-				echo $Salary;
-				echo "<br>";
-				include 'scripts/CloseConnection.php';
-
-			}
-			
-			
-		}
-		else {
-			echo "You do not have permission to see this page. Please log in.";
-		}
+<?php
+	if(session_id() == '' || !isset($_SESSION['privilege']))
+	{
+		echo "You do not have permission to see this page. Please log in.";
+	}
+	else if($_SESSION["privilege"] === "customer")
+	{
+		include 'scripts/ConnectToDB.php';
+		$clientID = $_SESSION["cusID"];
+		$query = "SELECT * FROM clients WHERE clientID = $clientID;";
+		$clientDetails = mysql_query($query);
+		$addressID = printDetails($clientDetails, $clientID, true);
 		
-		?>
+		$query = "SELECT * FROM address WHERE addressID = $addressID;";
+		$addressDetails = mysql_query($query);
+ 		printAddressDetails($addressDetails, $clientID, true);
+
+		$query = "SELECT * FROM payments_details WHERE clientID = $clientID;";
+		$paymentDetails = mysql_query($query);
+		printPaymentDetails($paymentDetails, $clientID, true);
+ 			
+		include 'scripts/CloseConnection.php';
+		}
+	else if($_SESSION["privilege"] === "employee" || $_SESSION["privilege"] === "Accountant" ||$_SESSION["privilege"] === "Manager" || $_SESSION["privilege"] === "Customer Support" || $_SESSION["privilege"] === "CEO" || $_SESSION["privilege"] === "IT" ||$_SESSION["privilege"] === "Administrator")
+	{
+		include 'scripts/ConnectToDB.php';
+		$empID = $_SESSION["empID"];
+		$query = "SELECT addressID, Fname, Lname, email, phonenumber, dateofbirth FROM employee WHERE employeeID = $empID;";
+		$personalDetails = mysql_query($query);
+		$addressID = printDetails($personalDetails, $empID, false);
+
+		$query = "SELECT branchID, position, salary FROM employee WHERE employeeID = $empID;";
+		$employeeDetails = mysql_query($query);
+		printEmployeeDetails($employeeDetails);
+
+		$query = "SELECT * FROM address WHERE addressID = $addressID;";
+		$addressDetails = mysql_query($query);
+		printAddressDetails($addressDetails, $empID, true);
+		
+		include 'scripts/CloseConnection.php';
+	}	
+?>
 		
 	</article>
-
-
-	<?php include 'footer.php';?>
-
-		
-
-</body>
-
+<?php include 'footer.php';?>
+	</body>
 </html>
