@@ -102,7 +102,8 @@ name of the view : emp_login_branch   // changed this view, was wrong.. Now its 
     employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth'
 	from logins  
  	left join employee on logins.employeeID = employee.employeeID
-    WHERE employee.employeeID IS NOT NULL;
+    WHERE employee.employeeID IS NOT NULL
+    order by logins.loginID;
 --------------------------------------------------------------
 
 

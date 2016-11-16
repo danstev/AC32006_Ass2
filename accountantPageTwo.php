@@ -29,7 +29,8 @@ echo "<br />\n";
 echo "<br />\n";
 echo "<h2>All The Employees That Earn Below The Average</h2>";
 	 
-$query = "SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from employee) as Difference from employee where salary < (select avg(salary) from employee);";
+$query = "SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from employee) as Difference from employee
+ where salary < (select avg(salary) from employee);";
 $result = mysql_query($query);
 printTable($result);
 
@@ -50,7 +51,8 @@ echo "<br />\n";
 echo "<br />\n";
 echo "<h2>Warehouse Orders</h2>";
 	 
-$query = "SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM warehouse, orders ,branches  where warehouse.warehouseID = orders.warehouseID and orders.clientID IS NULL and  warehouse.branchID=branches.branchID ORDER BY warehouseID ASC;";
+$query = "SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM warehouse, orders ,branches 
+ where warehouse.warehouseID = orders.warehouseID and orders.clientID IS NULL and  warehouse.branchID=branches.branchID ORDER BY warehouseID ASC;";
 $result = mysql_query($query);
 printTable($result);
 

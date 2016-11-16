@@ -17,7 +17,7 @@ BranchManager
 	Own branch  ( own branch address is done 1 view )
 	Own address (-----------------------------  1 view)
 	Own login   (2 view done)
-	Stock
+	Stock       ( next 
 	
 WarehouseManager
 	Stock
