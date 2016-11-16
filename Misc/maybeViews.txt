@@ -17,10 +17,10 @@ BranchManager
 	Own branch  ( own branch address is done 1 view )
 	Own address (-----------------------------  1 view)
 	Own login   (2 view done)
-	Stock       ( next 
+	Stock       ( this view is done for a admin)
 	
 WarehouseManager
-	Stock
+	Stock            
 	Orders
 	Own employee info
 	Own branch   
@@ -59,10 +59,10 @@ Accountant
 	Own login
 	
 Client
-	Own address            1
-	Own info from clients  1
+	Own address           ( 1 done  can use clientInfo view )
+	Own info from clients  (1 done  can use clientInfo view )
 	Own help tickets       
-	Own login              1
+	Own login             ( 1 done  can use clientInfo view )
 	Own orders             2
 	Own payment_details    2
 	own items_ordered      2

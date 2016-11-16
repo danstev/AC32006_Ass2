@@ -38,11 +38,11 @@ left join address on clients.addressID = address.addressID
 order by clientID;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
-name of the view : stock_Product_View
+name of the view : stock_Product_View   -- this view possible to use with branch manager is well
 
 create view stock_Product_View as
 select stocks.stockID, stocks.quantity,products.productID,products.productName, 
-products.cost, products.productType,products.imageLink,products.description
+products.cost as 'Price' , products.productType as 'Type' ,products.imageLink,products.description
 from stocks
 left join products on stocks.productID = products.productID
 
@@ -105,6 +105,8 @@ name of the view : emp_login_branch   // changed this view, was wrong.. Now its 
     WHERE employee.employeeID IS NOT NULL
     order by logins.loginID;
 --------------------------------------------------------------
+
+
 
 
 
