@@ -67,7 +67,7 @@ left join logins on address.addressID = logins.loginID
 where username = 'admin';
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-name of the view :adminDetailsFull   (proper name displaying )
+name of the view :adminDetailsFull   (proper name displaying )  // possible to use for a branch manager
 
 
 select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
@@ -94,16 +94,16 @@ left join address on branches.addressID = address.addressID
  order by branchID;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-name of the view : emp_login_branch
+name of the view : emp_login_branch   // changed this view, was wrong.. Now its displaying all info ebout employee who is curretly working and has logins in the system
 
 	CREATE VIEW emp_login_branch AS
-  
-	select employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
-    employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth',
-	branches.branchID
-	from employee 
- 	left join branches on employee.branchID = branches.branchID;
-
+	select logins.loginID, logins.username, logins.passwords ,
+    employee.employeeID , employee.position, employee.Fname as 'First Name', employee.Lname as 'Last Name',
+    employee.salary, employee.phonenumber as 'Phone Number',employee.email,employee.dateofbirth as 'Date of Birth'
+	from logins  
+ 	left join employee on logins.employeeID = employee.employeeID
+    WHERE employee.employeeID IS NOT NULL;
+--------------------------------------------------------------
 
 
 
