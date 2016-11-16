@@ -13,18 +13,18 @@ Admin
 	Head_office	- 2 view (done)
 	
 BranchManager
-	Own employee info 
-	Own branch
-	Own address
-	Own login
+	Own employee info (   2 view done)
+	Own branch  ( own branch address is done 1 view )
+	Own address (-----------------------------  1 view)
+	Own login   (2 view done)
 	Stock
 	
 WarehouseManager
 	Stock
 	Orders
 	Own employee info
-	Own branch
-	Own address
+	Own branch   
+	Own address  
 	Own login
 	Items_Ordered
 	Courier
