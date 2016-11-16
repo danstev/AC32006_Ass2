@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title>Payment Details</title>
+<title>Payment Details : DiveMaster</title>
 <body>
 <?php include 'scripts/sessionStart.php';?>
 <?php include 'header.php';?>
 <?php include 'scripts/ConnectToDB.php'; ?>
-
+<h1>Payment Details : DiveMaster</h1>
 <?php
 	if(session_id() == '' || !isset($_SESSION['privilege']))
 	{
@@ -24,16 +24,23 @@
 	else if($_SESSION["privilege"] === "customer")
 	{	
 		$clientID = $_SESSION["cusID"];
-		$paymentres = mysql_query("SELECT cardDetails, accName from payments_details WHERE clientID = '$clientID'");
+		$paymentres = mysql_query("SELECT cardNumber, accName, expDate, addressID from payments_details WHERE clientID = '$clientID'");
 		if($paymentres)
 		{
-			$payment = mySQL_fetch_row($paymentres);
-			$last4card = substr($payment[0],-4);
+			$payment = mySQL_fetch_assoc($paymentres);
+			$last4card = substr($payment["cardNumber"],-4);
+			$addressID = $payment["addressID"];
+			$addressResult = mysql_query("SELECT * FROM address WHERE addressID = $addressID");
+			$address = mysql_fetch_assoc($addressResult);
+			include 'forms/PaymentDetailForm.php';
 		}
-		echo '<h2>Payment Details</h2>';
-		include 'forms/PaymentDetailForm.php';
+		else
+		{
+			echo "No payment Details Found";
+		}
+		
 	}	
-	else if( $_SESSION["privilege"] === "employee" || $_SESSION["privilege"] === "manager"  || $_SESSION["privilege"] === "admin" )
+	else if(isset($_SESSION['privilege']) && $_SESSION['privilege'] !== "customer")
 	{
 		echo "You do not have permission to see this page. Only customers have access to this page.";
 	}
