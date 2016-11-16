@@ -61,7 +61,7 @@ Accountant
 Client
 	Own address           ( 1 done  can use clientInfo view )
 	Own info from clients  (1 done  can use clientInfo view )
-	Own help tickets       
+	Own help tickets       (done)
 	Own login             ( 1 done  can use clientInfo view )
 	Own orders             2 ( done)
 	Own payment_details    2  (done)
