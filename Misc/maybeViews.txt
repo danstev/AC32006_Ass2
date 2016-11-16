@@ -63,7 +63,7 @@ Client
 	Own info from clients  (1 done  can use clientInfo view )
 	Own help tickets       
 	Own login             ( 1 done  can use clientInfo view )
-	Own orders             2
-	Own payment_details    2
-	own items_ordered      2
+	Own orders             2 ( done)
+	Own payment_details    2  (done)
+	own items_ordered      2  (done)
 	
