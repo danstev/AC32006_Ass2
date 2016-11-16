@@ -29,8 +29,7 @@ echo "<br />\n";
 echo "<br />\n";
 echo "<h2>All The Employees That Earn Below The Average</h2>";
 	 
-$query = "SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from employee) as Difference from employee
- where salary < (select avg(salary) from employee);";
+$query = "SELECT * from employeeSalary";
 $result = mysql_query($query);
 printTable($result);
 

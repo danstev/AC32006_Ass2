@@ -157,6 +157,13 @@ INNER JOIN warehouse ON stocks.warehouseID=warehouse.warehouseID
 INNER JOIN products ON products.productID = stocks.productID
 INNER JOIN branches ON branches.branchID = warehouse.branchID;
 ---------------------------------------------------------
+accountant 
+
+create view employeeSalary as
+SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from employee) as Difference from employee
+ where salary < (select avg(salary) from employee);
+ 
+ ----------------------------------------------------------
 
 
 
