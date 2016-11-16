@@ -109,11 +109,14 @@ name of the view : emp_login_branch   // changed this view, was wrong.. Now its 
 name of the view : order_paym_detail_ordered // displaying info about how many orders was ordered and what card details was used 
 
 create view order_paym_detail_ordered as
+
 select  items_ordered.itemID, items_ordered.quantity, items_ordered.itemCost,
- orders.orderID, orders.clientID, orders.totalCost, orders.orderDate, orders.address,
+products.imageLink,products.productName,
+ orders.orderID, orders.clientID,orders.orderDate, orders.address,
  payments_details.paymentId, payments_details.accName, payments_details.cardNumber, payments_details.expDate
  from items_ordered
  left join orders on items_ordered.orderID = orders.orderID
+ left join products on items_ordered.productID = products.productID
  left join payments_details on orders.clientID = payments_details.clientID
  where payments_details.paymentId IS NOT NULL;
 
