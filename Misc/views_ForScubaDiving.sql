@@ -95,6 +95,7 @@ left join address on branches.addressID = address.addressID
  order by branchID;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
+<<BranchManager>>
 name of the view : emp_login_branch   // changed this view, was wrong.. Now its displaying all info ebout employee who is curretly working and has logins in the system
 
 	CREATE VIEW emp_login_branch AS
@@ -106,6 +107,8 @@ name of the view : emp_login_branch   // changed this view, was wrong.. Now its 
     WHERE employee.employeeID IS NOT NULL
     order by logins.loginID;
 --------------------------------------------------------------
+<<Client>>>
+
 name of the view : order_paym_detail_ordered // displaying info about how many orders was ordered and what card details was used 
 
 create view order_paym_detail_ordered as
@@ -122,6 +125,8 @@ products.imageLink,products.productName,
 
 
 ---------------------------------------------------------------------------------------
+<<Client>>>
+
 create view Help_vlient as
 
 select help_tickets.ticketID, help_tickets.complaint, help_tickets.date_opened, help_tickets.date_closed,
@@ -131,6 +136,27 @@ left join orders on help_tickets.orderID = orders.orderID
 where orders.clientID IS NOT NULL
 group by help_tickets.ticketID;
 
+--------------------------------------------------------------------------
+<<warehouse>>
+
+view name: warehouse_manager_employees
+
+CREATE VIEW warehouse_manager_employees AS
+SELECT employee.*, warehouse.warehouseID
+FROM employee
+INNER JOIN warehouse ON employee.branchID = warehouse.branchID;
+
+
+
+view name: warehouse_manager_stock
+
+CREATE VIEW warehouse_manager_stock AS
+SELECT stocks.*, products.productName, products.cost, products.productType, products.imageLink, products.description, products.supplierID, branches.branchID, branches.Branch_Name
+FROM stocks
+INNER JOIN warehouse ON stocks.warehouseID=warehouse.warehouseID
+INNER JOIN products ON products.productID = stocks.productID
+INNER JOIN branches ON branches.branchID = warehouse.branchID;
+---------------------------------------------------------
 
 
 
