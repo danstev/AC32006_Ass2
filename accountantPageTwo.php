@@ -50,8 +50,7 @@ echo "<br />\n";
 echo "<br />\n";
 echo "<h2>Warehouse Orders</h2>";
 	 
-$query = "SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM warehouse, orders ,branches 
- where warehouse.warehouseID = orders.warehouseID and orders.clientID IS NULL and  warehouse.branchID=branches.branchID ORDER BY warehouseID ASC;";
+$query = "select * from ware_order_cost";
 $result = mysql_query($query);
 printTable($result);
 

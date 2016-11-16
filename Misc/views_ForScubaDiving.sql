@@ -164,6 +164,10 @@ SELECT EmployeeID, Fname , Lname , Position,  salary - (select avg(salary) from 
  where salary < (select avg(salary) from employee);
  
  ----------------------------------------------------------
+ create view ware_order_cost as
+SELECT warehouse.warehouseID, branch_name, orderID, totalCost , orderDate FROM warehouse, orders ,branches 
+ where warehouse.warehouseID = orders.warehouseID and orders.clientID IS NULL and 
+ warehouse.branchID=branches.branchID ORDER BY warehouseID ASC;
 
 
 
