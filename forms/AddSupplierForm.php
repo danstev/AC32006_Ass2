@@ -1,4 +1,4 @@
-<form action="addSupplier.php" method="post">
+<form action="addSupplier.php" method="post"> 
 
 		Supplier name:<br />
 		<input name="supplier" type="text" /><br />

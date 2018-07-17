@@ -12,7 +12,7 @@
 <html>
 <title> </title>
 <body>
-	<h1>Register : Scubadiver bullshit what did we call us?</h1>
+	<h1>Register : UNUSED</h1>
 	<?php include 'scripts/ConnectToDB.php';?>
 
 	<article>

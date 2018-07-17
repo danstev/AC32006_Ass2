@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="style.css">
 
 <html>
-<title>Register : ScubaDiver</title>
+<title>Register : ScubaDiver</title> 
 <body>
 
 	<?php include 'header.php';?>

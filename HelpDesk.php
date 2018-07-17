@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 	//Trim removes whitespaces, so no problems inserting into db
 	$orderID =mysql_real_escape_string(trim($_POST['orderID']));
-	//strip tags removes any php, html css etc tags
+	//strip tags removes any php, html css etc tags 
   	$orderID = strip_tags($orderID);
 	//htmlspeicalchars escapes some characters 
  	$orderID = htmlspecialchars($orderID);
